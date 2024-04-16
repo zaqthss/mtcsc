@@ -1,0 +1,11 @@
+temhum_errorRate_together
+Dirty rate is 0.05  RMS is 6.104377363769376
+Dirty rate is 0.075  RMS is 6.71589716942278
+Dirty rate is 0.1  RMS is 7.315958352853725
+Dirty rate is 0.125  RMS is 7.929118401972912
+Dirty rate is 0.15  RMS is 8.465825219657795
+Dirty rate is 0.175  RMS is 8.96592323450685
+Dirty rate is 0.2  RMS is 9.493472906247607
+Dirty rate is 0.225  RMS is 9.953029998090907
+Dirty rate is 0.25  RMS is 10.379746762192966
+Dirty rate is 0.275  RMS is 10.825008103422528
