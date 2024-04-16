@@ -16,12 +16,12 @@ public class DynamicSpeed_beta_ws {
         // bicycle
         double S = 6.6000;
 
-        int expTime = 50;
+        int expTime = 99;
         double[] totalBeta = new double[expTime];
         double[] totalRMS = new double[expTime];
         double beta = 0;
         int ws = 0;
-        for(int i=49; i<expTime; i++){
+        for(int i=0; i<expTime; i++){
             beta = 0.01 * (i+1);
             totalBeta[i] = beta;
             // two-plus-ds

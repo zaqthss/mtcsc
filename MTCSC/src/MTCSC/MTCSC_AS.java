@@ -504,10 +504,10 @@ public class MTCSC_AS {
         }
       }
       else { // xi vialote the speed constraint with xi-1 
-        for (int j = i-1; j >= 1; j--) {
+        for (int j = i-1; j >= topIndex; j--) {
             tp2 = tempList.get(j);
             t2 = tp2.getTimestamp();
-            if ((distance(tp1, tp2) > ((t1-t2)*(t1-t2) * SMAX * SMAX) && top[j] > 0) || j==1) {
+            if ((distance(tp1, tp2) > ((t1-t2)*(t1-t2) * SMAX * SMAX) && top[j] > 0) || j==topIndex) {
                 if (distance(prePoint, tp1) <= ((t1-preTime)*(t1-preTime) * SMAX * SMAX)) {
                     // if (distance(prePoint, tp1) > ((t1-kpTime-1)*(t1-kpTime-1) * SMAX * SMAX)) {
                     // if (distance(prePoint, tp1) > ((t1-2*kpTime+preTime)*(t1-2*kpTime+preTime) * SMAX * SMAX)) {

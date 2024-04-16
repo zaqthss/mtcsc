@@ -209,11 +209,11 @@ public class MTCSC_Uni {
                 }
             }
             else { // xi vialote the speed constraint with xi-1 
-                for (int j = i-1; j >= 1; j--) {
+                for (int j = i-1; j >= topIndex; j--) {
                     double tpVal= tp1.getModify();
                     tp2 = tempList.get(j);
                     t2 = tp2.getTimestamp();
-                    if ((((distance(tp2, tp1) > (t1-t2)*SMAX) || (distance(tp2, tp1) < (t1-t2)*SMIN)) && top[j] > 0) || j==1) {
+                    if ((((distance(tp2, tp1) > (t1-t2)*SMAX) || (distance(tp2, tp1) < (t1-t2)*SMIN)) && top[j] > 0) || j==topIndex) {
                         if (distance(prePoint, tp1) <= ((t1-preTime)*SMAX) && distance(prePoint, tp1) >= ((t1-preTime)*SMIN)) {
                             // if ((lowerBound<((kpTime-t1)*SMAX+tpVal)) && (upperBound>((kpTime-t1)*SMIN+tpVal))) {
                             //     top[i] = -1;
