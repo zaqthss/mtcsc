@@ -6,7 +6,6 @@ To enable reproductivity, we open source all datasets, algorithms and codes intr
 ## Requirement
 
 - java:1.7
-- python: 3.7
 
 ## Code Structure
 
