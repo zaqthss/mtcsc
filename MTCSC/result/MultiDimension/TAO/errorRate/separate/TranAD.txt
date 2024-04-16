@@ -1,0 +1,11 @@
+tao_errorRate_separate
+Dirty rate is 0.05  RMS is 3.251112681614566
+Dirty rate is 0.075  RMS is 3.861227892006819
+Dirty rate is 0.1  RMS is 4.34846111229965
+Dirty rate is 0.125  RMS is 4.777219466741124
+Dirty rate is 0.15  RMS is 5.194216852704573
+Dirty rate is 0.175  RMS is 5.5653886155693595
+Dirty rate is 0.2  RMS is 5.878449466906032
+Dirty rate is 0.225  RMS is 6.241981846280064
+Dirty rate is 0.25  RMS is 6.567141303544328
+Dirty rate is 0.275  RMS is 6.869735507161027

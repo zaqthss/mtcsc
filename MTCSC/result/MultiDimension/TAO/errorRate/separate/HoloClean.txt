@@ -1,0 +1,11 @@
+tao_errorRate_separate
+error rate is  0.05  avg RMSE is  3.1658543603152003
+error rate is  0.075  avg RMSE is  3.931827582341581
+error rate is  0.1  avg RMSE is  4.519965282208082
+error rate is  0.125  avg RMSE is  5.029585733131556
+error rate is  0.15  avg RMSE is  5.517530311325464
+error rate is  0.175  avg RMSE is  5.947570488515424
+error rate is  0.2  avg RMSE is  6.310178494919446
+error rate is  0.225  avg RMSE is  6.723488516432141
+error rate is  0.25  avg RMSE is  7.098790415095246
+error rate is  0.275  avg RMSE is  7.444414104366848

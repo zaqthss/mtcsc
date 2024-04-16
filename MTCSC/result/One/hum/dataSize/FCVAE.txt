@@ -1,0 +1,10 @@
+hum_dataSize
+data size is  5000  avg RMSE is  8.916543113
+data size is  10000 avg RMSE is 8.126332983
+data size is  15000 avg RMSE is  7.936903645
+data size is  20000 avg RMSE is  7.601398169
+data size is  25000 avg RMSE is  7.877332195
+data size is  30000 avg RMSE is  8.076921645
+data size is  35000 avg RMSE is  7.948269735
+data size is  40000 avg RMSE is  8.308401405
+data size is  45000  avg RMSE is  8.876173553

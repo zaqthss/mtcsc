@@ -1,0 +1,5 @@
+tao_dataSize_together
+data size is  5000  avg RMSE is  5.623945170008222
+data size is  10000  avg RMSE is  8.439795568828695
+data size is  15000  avg RMSE is  8.80948030712254
+data size is  20000  avg RMSE is  13.031355090188978

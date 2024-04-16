@@ -1,0 +1,10 @@
+tem_dataSize
+data size is  5000  avg RMSE is  3.591501798
+data size is  10000 avg RMSE is 3.925333124
+data size is  15000 avg RMSE is  4.042931606
+data size is  20000 avg RMSE is  3.942920348
+data size is  25000 avg RMSE is  3.648840471
+data size is  30000 avg RMSE is  3.750028241
+data size is  35000 avg RMSE is  3.542396918
+data size is  40000 avg RMSE is  3.532298768
+data size is  45000  avg RMSE is  3.504213308

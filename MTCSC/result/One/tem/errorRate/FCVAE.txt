@@ -1,0 +1,11 @@
+tem_errorRate
+error rate is 0.05 avg RMSE is 3.588583528
+error rate is  0.075  avg RMSE is  3.588583586
+error rate is  0.1  avg RMSE is  3.588583458
+error rate is  0.125  avg RMSE is  3.58858329
+error rate is  0.15  avg RMSE is  3.588583307
+error rate is  0.175  avg RMSE is  3.588583318
+error rate is  0.2  avg RMSE is  3.588583096
+error rate is  0.225  avg RMSE is  3.588583106
+ error rate is  0.25  avg RMSE is  3.588583154
+error rate is  0.275  avg RMSE is  3.588583084
