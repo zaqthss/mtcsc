@@ -113,21 +113,21 @@ public class stock {
                 // System.out.println("    The number of modified points is " + num_my1);
                 // System.out.println("    Time is " + (time_my2-time_my1));
 
-                // MTCSC
+                // SCREEN
                 dirtySeries = assist.readData(inputFileName, ",");
                 dirtySeries = assist.addNoise_stock(dirtySeries, drate, seed);
                 rmsDirty = assist.calcRMS(dirtySeries);
-                SCREEN MTCSC = new SCREEN(dirtySeries, sMax, sMin, TT);
-                long time_MTCSC1 = System.currentTimeMillis();
-                TimeSeries resultSeries_MTCSC = MTCSC.mainScreen();
-                long time_MTCSC2 = System.currentTimeMillis();
-                double rms_MTCSC = assist.calcRMS(resultSeries_MTCSC);
-                double cost_MTCSC = assist.calcCost(resultSeries_MTCSC);
-                int num_MTCSC = assist.pointNum1(resultSeries_MTCSC);
-                totalRMS[i][3] += rms_MTCSC;
-                totalCOST[i][3] += cost_MTCSC;
-                totalNUM[i][3] += num_MTCSC;
-                totalTIME[i][3] = totalTIME[i][3] + time_MTCSC2-time_MTCSC1;
+                SCREEN screen = new SCREEN(dirtySeries, sMax, sMin, TT);
+                long time_screen1 = System.currentTimeMillis();
+                TimeSeries resultSeries_screen = screen.mainScreen();
+                long time_screen2 = System.currentTimeMillis();
+                double rms_screen = assist.calcRMS(resultSeries_screen);
+                double cost_screen = assist.calcCost(resultSeries_screen);
+                int num_screen = assist.pointNum1(resultSeries_screen);
+                totalRMS[i][3] += rms_screen;
+                totalCOST[i][3] += cost_screen;
+                totalNUM[i][3] += num_screen;
+                totalTIME[i][3] = totalTIME[i][3] + time_screen2-time_screen1;
 
                 // System.out.println("SCREEN:");
                 // System.out.println("    Dirty RMS error is " + rmsDirty);

@@ -60,18 +60,18 @@ public class ArrowHead {
             assist.saveTSVFromTimeSeriesList(TimeSeriesList, writePath, labels);
             System.out.println("My1 rms is : " + RMS);
 
-            // MTCSC
+            // SCREEN
             TimeSeriesList = assist.appAddNoiseTimeSeires(filePath, drate, seed);
             for(int i=0; i<TimeSeriesList.size(); i++){
                 dirtySeries = TimeSeriesList.get(i);
                 label = labels.get(i);
-                SCREEN MTCSC = new SCREEN(dirtySeries, sMax[label], sMin[label], T);
-                // long time_MTCSC1 = System.currentTimeMillis();
-                TimeSeries resultSeries_MTCSC = MTCSC.mainScreen();
-                // long time_MTCSC2 = System.currentTimeMillis();
-                // double rms_MTCSC = assist.calcRMS(resultSeries_MTCSC);
-                // double cost_MTCSC = assist.calcCost(resultSeries_MTCSC);
-                // int num_MTCSC = assist.pointNum1(resultSeries_MTCSC);
+                SCREEN screen = new SCREEN(dirtySeries, sMax[label], sMin[label], T);
+                // long time_screen1 = System.currentTimeMillis();
+                TimeSeries resultSeries_screen = screen.mainScreen();
+                // long time_screen2 = System.currentTimeMillis();
+                // double rms_screen = assist.calcRMS(resultSeries_screen);
+                // double cost_screen = assist.calcCost(resultSeries_screen);
+                // int num_screen = assist.pointNum1(resultSeries_screen);
             }
             writePath = dataName+"/"+String.valueOf(drate)+"_"+String.valueOf(seed)+"_Screen.tsv";
             assist.saveTSVFromTimeSeriesList(TimeSeriesList, writePath, labels);

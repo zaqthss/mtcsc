@@ -135,19 +135,19 @@ public class TAO_errorRate_separate {
                 dirtySeries_3 = assist.getN(dirtySeries, 2);
                 double rmsDirty_Screen = assist.RMS1(dirtySeries_1, dirtySeries_2, dirtySeries_3);
                 // Screen_1
-                SCREEN MTCSC_1 = new SCREEN(dirtySeries_1, sMax_1, sMin_1, T1);
+                SCREEN screen_1 = new SCREEN(dirtySeries_1, sMax_1, sMin_1, T1);
                 long time3 = System.currentTimeMillis();
-                TimeSeries resultSeries_1 = MTCSC_1.mainScreen();
+                TimeSeries resultSeries_1 = screen_1.mainScreen();
                 long time4 = System.currentTimeMillis();
                 // Screen_2
-                SCREEN MTCSC_2 = new SCREEN(dirtySeries_2, sMax_2, sMin_2, T1);
+                SCREEN screen_2 = new SCREEN(dirtySeries_2, sMax_2, sMin_2, T1);
                 long time5 = System.currentTimeMillis();
-                TimeSeries resultSeries_2 = MTCSC_2.mainScreen();
+                TimeSeries resultSeries_2 = screen_2.mainScreen();
                 long time6 = System.currentTimeMillis();
                 // Screen_3
-                SCREEN MTCSC_3 = new SCREEN(dirtySeries_3, sMax_3, sMin_3, T1);
+                SCREEN screen_3 = new SCREEN(dirtySeries_3, sMax_3, sMin_3, T1);
                 long time7 = System.currentTimeMillis();
-                TimeSeries resultSeries_3 = MTCSC_3.mainScreen();
+                TimeSeries resultSeries_3 = screen_3.mainScreen();
                 long time8 = System.currentTimeMillis();
                 double rms_Screen = assist.RMS1(resultSeries_1, resultSeries_2, resultSeries_3);
                 double cost_Screen = assist.Cost33(resultSeries_1, resultSeries_2, resultSeries_3);
