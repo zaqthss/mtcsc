@@ -9,6 +9,7 @@ To enable reproductivity, we open source all datasets, algorithms and codes intr
 ## Requirement
 
 - java : 1.7/1.8
+- IDE : IntelliJ IDEA or Visual Studio Code (Recommended for use, confirm that it can run)
 
 ## Code Structure
 * MTCSC/
