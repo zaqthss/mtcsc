@@ -13,7 +13,7 @@ import MTCSC.util.Assist;
 public class ArrowHead {
     public static void main(String[] args) {
         Assist assist = new Assist();
-        String filePath = "data/UCR/TRAIN/ArrowHead_TRAIN.tsv";
+        String filePath = "data/UCR/ArrowHead/ArrowHead_TRAIN.tsv";
         String dataName = "ArrowHead";
         
         ArrayList<Integer> labels = assist.appGetLabel(filePath);

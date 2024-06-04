@@ -13,7 +13,7 @@ import MTCSC.util.Assist;
 public class DiatomSizeReduction {
     public static void main(String[] args) {
         Assist assist = new Assist();
-        String filePath = "data/UCR/TRAIN/DiatomSizeReduction_TRAIN.tsv";
+        String filePath = "data/UCR/DiatomSizeReduction/DiatomSizeReduction_TRAIN.tsv";
         String dataName = "DiatomSizeReduction";
         
         ArrayList<Integer> labels = assist.appGetLabel(filePath);
