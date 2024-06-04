@@ -51,34 +51,36 @@ To enable reproductivity, we open source all datasets, algorithms and codes intr
 If you want to reproduce the experimental results in this paper, simply run a separate Java file. The correspondence between the Java file and the experimental section is as follows.
 
 **Path = MTCSC/src/MTCSC/experiment/**
+**Data = MTCSC/data/**
+**Result = MTCSC/result/**
 
 * Section 4.2 Adaptive Speed
-  * Path/DynamicSpeed_beta_ws.java
+  * Path/DynamicSpeed_beta_ws.java, results in Result/DynamicSpeed_Beta/
 * Section 5.2.1 Comparison among our proposals
-  * Path/stock.java
+  * Path/stock.java, results in Result/One/stock/
 * Section 5.2.2  Varying Error Rate
-  * Path/oneDimension_errorRate.java
+  * Path/oneDimension_errorRate.java, results in Result/One/tem/errorRate
 * Section 5.2.3 Varying Data Size
-  * Path/oneDimension_dataSize.java
+  * Path/oneDimension_dataSize.java, results in Result/One/tem/dataSize
 * Section 5.3.1 Varying Error Rate
-  * Path/ILD_errorRate_separate.java
-  * Path/TAO_errorRate_separate.java
-  * Path/ECG_errorRate_together.java
-  * Path/TAO_errorRate_together.java
+  * Path/ILD_errorRate_separate.java, results in Result/Two/TemHum/errorRate/separate/
+  * Path/TAO_errorRate_separate.java, results in Result/MultiDimension/TAO/errorRate/separate/
+  * Path/ECG_errorRate_together.java, results in Result/MultiDimension/ECG/errorRate/together/
+  * Path/TAO_errorRate_together.java, results in Result/MultiDimension/TAO/errorRate/together/
 * Section 5.3.2 Varying Data Size
-  * Path/ILD_dataSize_separate.java
-  * Path/ILD_dataSize_together.java
-  * Path/TAO_dataSize_separate.java
-  * Path/TAO_dataSize_together.java
+  * Path/ILD_dataSize_separate.java, results in Result/Two/TemHum/dataSize/separate/
+  * Path/TAO_dataSize_separate.java, results in Result/MultiDimension/TAO/dataSize/separate/
+  * Path/ILD_dataSize_together.java, results in Result/Two/TemHum/dataSize/separate/
+  * Path/TAO_dataSize_together.java, results in Result/MultiDimension/TAO/dataSize/together/
 * Section 5.3.3 Varying Data Size
   * In 5.3.1 and 5.3.2
 * Section 5.4.1 GPS Trajectory with Human Walking
-  * gps.java
-* Section 5.4.3 Adaptive Speed with Different Transportation
-  * Path/DynamicSpeed.java
-  * Path/DynamicSpeed_bucket.java
-  * Path/DynamicSpeed_threshold.java
-* Section 5.5
+  * gps.java, results in Result/GPS/
+* Section 5.4.3 Adaptive Speed with Different Transportation : 
+  * Path/DynamicSpeed.java, results in Result/DynamicSpeed/
+  * Path/DynamicSpeed_bucket.java, results in Result/DynamicSpeed_Bucket/
+  * Path/DynamicSpeed_threshold.java, results in Result/DynamicSpeed_Threshold/
+* Section 5.5 Applications : repair results in Data/UCR, The final classification and clustering experiments were completed using Python
   * Path/app/ArrowHead.java
   * Path/app/Car.java
   * Path/app/DiatomSizeReduction.java

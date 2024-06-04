@@ -204,11 +204,11 @@ public class Global_1 {
     
     private void findAllLongestIncreasingSubsequences(List<TimePoint> totalList, int[] dp, int currentIndex, int length,
                             List<Integer> currentIndices, List<List<Integer>> allIndices) {
-        Queue<State> queue = new LinkedList<>();
-        queue.offer(new State(currentIndex, length, new ArrayList<>(currentIndices)));
+        Queue<State_1> queue = new LinkedList<>();
+        queue.offer(new State_1(currentIndex, length, new ArrayList<>(currentIndices)));
 
         while (!queue.isEmpty()) {
-            State state = queue.poll();
+            State_1 state = queue.poll();
             currentIndex = state.currentIndex;
             length = state.length;
             currentIndices = state.currentIndices;
@@ -230,7 +230,7 @@ public class Global_1 {
                 TimePoint IPoint = totalList.get(i);
                 if (judgeSpeed(JPoint, IPoint) && dp[currentIndex] == dp[i] + 1) {
                     currentIndices.add(i);
-                    queue.offer(new State(i, length - 1, new ArrayList<>(currentIndices)));
+                    queue.offer(new State_1(i, length - 1, new ArrayList<>(currentIndices)));
                     currentIndices.remove(currentIndices.size() - 1);
                 }
             }
@@ -307,12 +307,12 @@ public class Global_1 {
     }
 }
 
-class State {
+class State_1 {
     int currentIndex;
     int length;
     List<Integer> currentIndices;
 
-    State(int currentIndex, int length, List<Integer> currentIndices) {
+    State_1(int currentIndex, int length, List<Integer> currentIndices) {
         this.currentIndex = currentIndex;
         this.length = length;
         this.currentIndices = currentIndices;
