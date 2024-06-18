@@ -271,6 +271,46 @@ public class Assist {
 		return timeSeries;
 	}
 
+	public TimeSeriesN readDataN(String filename, String splitOp, int totalDimension, int n, int size) {
+		TimeSeriesN timeSeries = new TimeSeriesN();
+	
+		try {
+			FileReader fr = new FileReader(PATH + filename);
+			BufferedReader br = new BufferedReader(fr);
+	
+			String line;
+			long timestamp;
+			ArrayList<Double> value = new ArrayList<Double>();
+			ArrayList<Double> truth = new ArrayList<Double>();
+			TimePointN tp;
+			int j = 0;
+			// vals[1]-vals[n]是value，vals[n+1]-vals[2n]truth
+			while ((line = br.readLine()) != null && j < size) {
+				String[] vals = line.split(splitOp);
+				value = new ArrayList<Double>();
+				truth = new ArrayList<Double>();
+				timestamp = Long.parseLong(vals[0]);
+				for(int i=1; i<=n; i++){
+					value.add(Double.parseDouble(vals[i]));
+				}
+				for(int i=1; i<=n; i++){
+					truth.add(Double.parseDouble(vals[totalDimension+i]));
+				}
+				tp = new TimePointN(n, timestamp, value, truth);
+				timeSeries.addPoint(tp);
+				j++;
+			}
+	
+			br.close();
+			fr.close();
+		} catch (IOException e) {
+		  // TODO Auto-generated catch block
+		  e.printStackTrace();
+		}
+	
+		return timeSeries;
+	  }
+
 	public void normalize(TimeSeries2 timeSeries){
 		ArrayList<TimePoint2> orgList = timeSeries.getTimeseries();
 
@@ -1540,6 +1580,50 @@ public class Assist {
 			
 			for(int j=0; j<n; j++){
 				// Global Max Min
+				noise = random.nextDouble(); // [0.0-1.0]
+				noiseLen = noiseMinMax.get(1+j*2) - noiseMinMax.get(j*2);
+				if (noise == 0)
+					noise = noiseMinMax.get(j*2);
+				else {
+					noise = noise * noiseLen + noiseMinMax.get(j*2);
+				}
+
+				noise = Double.parseDouble(df.format(noise));
+				orgList.get(index).setN(j, noise);
+			}
+		}
+		return timeSeries;
+	}
+
+	public TimeSeriesN addNoiseN_maxmin_together_ecg(TimeSeriesN timeSeries, double drate, int seed, int n) {
+		ArrayList<TimePointN> orgList = timeSeries.getTimeseries();
+		int len = orgList.size();
+		int errorNum = (int) (len * drate);
+
+		ArrayList<Double> noiseMinMax = getMinMax(orgList, n);
+		double noise=0, noiseLen=0;
+		
+		DecimalFormat df = new DecimalFormat("#.00000");
+		ArrayList<Integer> timelist = new ArrayList<Integer>();
+		for (int i = 0; i < len-1; i++) {
+			if (orgList.get(i+1).getTimestamp()-orgList.get(i).getTimestamp() < 0)
+				timelist.add(i);
+		}
+		
+		ArrayList<Integer> indexlist = new ArrayList<Integer>();
+		Random random = new Random(seed);
+		int index = 0;
+		
+		for (int i = 0; i < errorNum; ++i) {
+			index = random.nextInt(len);
+			if (indexlist.contains(index) || index < 1 || (index ==(len-1))) {
+				i = i - 1;
+				continue;
+			}
+			indexlist.add(index);
+			
+			for(int j=0; j<n; j++){
+				// 全局最大最小
 				noise = random.nextDouble(); // [0.0-1.0]
 				noiseLen = noiseMinMax.get(1+j*2) - noiseMinMax.get(j*2);
 				if (noise == 0)

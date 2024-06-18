@@ -42,19 +42,19 @@ public class Global_N {
 
     public TimeSeriesN clean(){
         ArrayList<Integer> outlierIndex = new ArrayList<Integer>();
-        // Get the index of the error point
+        // 异常检测，获取错误点的下标
         outlierIndex = outlierDetection_2();
 
-        // repair
+        // 异常修复
         TimeSeriesN cleanSeries = outlierRepair(outlierIndex);
 
         return cleanSeries;
     }
 
-    // outlierDetection
+    // 最长递增子序列:只有一个最长序列
     public ArrayList<Integer> outlierDetection() {
         ArrayList<Integer> outlierIndex = new ArrayList<Integer>();
-        // initial outlierIndex
+        // 初始化outlierIndex
         for(int i=0; i<this.Size; i++){
             outlierIndex.add(i);
         }
@@ -81,6 +81,7 @@ public class Global_N {
             }
         }
 
+        // 回溯寻找最长递增子序列的所有下标
         int tmpIndex = outlierIndex.indexOf(endIndex);
         outlierIndex.remove(tmpIndex);
         maxLength--;
@@ -100,7 +101,7 @@ public class Global_N {
 
     public ArrayList<Integer> outlierDetection_2() {
         ArrayList<Integer> outlierIndex = new ArrayList<Integer>();
-        // initial outlierIndex
+        // 初始化outlierIndex
         for(int i=0; i<this.Size; i++){
             outlierIndex.add(i);
         }
@@ -138,6 +139,7 @@ public class Global_N {
         return outlierIndex;
     }
 
+    // 最长递增子序列:返回所有最长序列
     public List<List<Integer>> allOutlierDetection() {
         List<List<Integer>> allOutlierIndex = new ArrayList<List<Integer>>();
         List<TimePointN> totalList = this.timeseries.getTimeseries();
@@ -163,6 +165,7 @@ public class Global_N {
             }
         }
 
+        // 回溯寻找所有最长递增子序列的下标
         for (int i = endIndex; i >= 0; i--) {
             if (dp[i] == maxLength) {
                 List<Integer> indices = new ArrayList<>();
@@ -174,6 +177,7 @@ public class Global_N {
         return allOutlierIndex;
     }
 
+    // 回溯寻找所有最长递增子序列的下标，对于stock10k数据太大，堆栈溢出了
     // private void findAllLongestIncreasingSubsequences(List<TimePoint> totalList, int[] dp, int currentIndex, int length,
     //                     List<Integer> currentIndices, List<List<Integer>> allOutlierIndex) {
     //     if (length == 0) {
@@ -199,6 +203,7 @@ public class Global_N {
     //     }
     // }
 
+    // 回溯寻找所有最长递增子序列的下标，使用while循环，不会堆栈溢出
     private void findAllLongestIncreasingSubsequences(List<TimePointN> totalList, int[] dp, int currentIndex, int length,
                             List<Integer> currentIndices, List<List<Integer>> allIndices) {
         Queue<State> queue = new LinkedList<>();
@@ -256,7 +261,7 @@ public class Global_N {
     }
 
     public TimeSeriesN outlierRepair(ArrayList<Integer> outlierIndex){
-        // initial label
+        // 初始化标签数组
         boolean[] label = new boolean[this.Size];
         for(int i=0; i<this.Size; i++){
             if(outlierIndex.contains(i)){
@@ -266,7 +271,7 @@ public class Global_N {
                 label[i] = true;
             }
         }
-        // add label
+        // 加标签
         ArrayList<TimePointN> tpList = new ArrayList<>();
         ArrayList<TimePointN> totalList = timeseries.getTimeseries();
         for (int i = 0; i < this.Size; ++i) {
@@ -293,6 +298,9 @@ public class Global_N {
                         pre_next_dis = tp2.getTimestamp() - tp1.getTimestamp();
                         break;
                     }
+                }
+                if(pre_dis==0 || pre_next_dis==0){
+                    break;
                 }
                 double rate = pre_dis / pre_next_dis;
                 ArrayList<Double> modify = new ArrayList<Double>();
