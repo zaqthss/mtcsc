@@ -21,11 +21,11 @@ public class Varing_dimensions {
         double[] totalDimension = {1, 2, 4, 8, 16, 32};
         double[] rate = {0.93, 0.92, 0.91, 0.9, 0.9, 0.9};
         double[] ss = {0.677, 1.0466, 1.4822, 1.21, 1.8, 3.035};
-        double[][] totalRMS = new double[6][methodNum];
+        double[][] totalRMS = new double[6][methodNum+1];
         double[][] totalCOST = new double[6][methodNum];
         double[][] totalNUM = new double[6][methodNum];
         double[][] totalTIME = new double[6][methodNum];
-        double[] totalDirtyRMS = new double[methodNum];
+        double[] totalDirtyRMS = new double[6];
 
         n = 1;
         for(int i=0; i<6; i++, n=n*2, S=3.0){
@@ -43,9 +43,9 @@ public class Varing_dimensions {
                 dirtySeries_1 = assist.addNoiseN_maxmin_together_ecg(dirtySeries_1, drate, seed, n);
                 // TimeSeriesN speedSeries_1 = assist.readDataN(inputFileName, ",", 32, n, size);
                 // S = assist.getSpeedN(speedSeries_1, 0.98, n);
-                // S = assist.getSpeedNDirty(dirtySeries_1, rate[i], n);
-                S = ss[i];
-                totalDirtyRMS[0] += assist.RMSN(dirtySeries_1, n);
+                S = assist.getSpeedNDirty(dirtySeries_1, rate[i], n);
+                // S = ss[i];
+                totalDirtyRMS[i] += assist.RMSN(dirtySeries_1, n);
                 MTCSC_N myn_1 = new MTCSC_N(dirtySeries_1, S, T, n);
                 long time1_1 = System.currentTimeMillis();
                 TimeSeriesN resultSeries_1 = myn_1.mainScreen();
@@ -93,18 +93,19 @@ public class Varing_dimensions {
             }
             
             for(int j=0; j<methodNum; j++){
-                totalDirtyRMS[j] /= expTime;
                 totalRMS[i][j] /= expTime;
                 totalCOST[i][j] /= expTime;
                 totalNUM[i][j] /= expTime;
                 totalTIME[i][j] /= expTime;
             }
+            totalDirtyRMS[i] /= expTime;
+            totalRMS[i][3] = totalDirtyRMS[i];
         }
 
-        String[] name = new String[]{" ", "MTCSC-C","MTCSC-G","MTCSC-L"};
-        
         String writefilename = "result/VaringDimension/RMS.csv";
-        assist.writeCSV(writefilename, name, totalDimension ,totalRMS);
+        String[] name1 = new String[]{" ", "MTCSC-C", "MTCSC-G", "MTCSC-L", "Dirty"};
+        assist.writeCSV(writefilename, name1, totalDimension ,totalRMS);
+        String[] name = new String[]{" ", "MTCSC-C", "MTCSC-G", "MTCSC-L"};
         writefilename = "result/VaringDimension/COST.csv";
         assist.writeCSV(writefilename, name, totalDimension ,totalCOST);
         writefilename = "result/VaringDimension/NUM.csv";
