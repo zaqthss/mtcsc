@@ -1195,6 +1195,41 @@ public class Assist {
 		}
 	}
 
+	// get the Speed constraints of n-dimensional time series data
+	public double getSpeedNDirty(TimeSeriesN timeSeries, double rate, int n) {
+		double tempSpeed = 0;
+		double distance = 0;
+		ArrayList<Double> truth1 = new ArrayList<Double>();
+		ArrayList<Double> truth2 = new ArrayList<Double>();
+		ArrayList<TimePointN> tempList = timeSeries.getTimeseries();
+		ArrayList<Double> speedList = new ArrayList<>();
+		TimePointN tp1, tp2;
+		int len = tempList.size();
+		for (int i = 0; i < len-1; ++i) {
+			tp1 = tempList.get(i);
+			tp2 = tempList.get(i+1);
+			// truth1 = tp1.getTruth();
+			// truth2 = tp2.getTruth();
+			truth1 = tp1.getOrgval();
+			truth2 = tp2.getOrgval();
+			distance = 0;
+			for(int j=0; j<n; j++){
+				distance += Math.pow(truth1.get(j) - truth2.get(j), 2);
+			}
+			tempSpeed = Math.sqrt(distance) / (tp2.getTimestamp()-tp1.getTimestamp());
+			speedList.add(tempSpeed);
+		}
+		len = speedList.size();
+		int index = (int) (len * rate);
+		Collections.sort(speedList);
+		if(rate == 1.0){
+			return speedList.get(speedList.size()-1);
+		}
+		else{
+			return speedList.get(index-1);
+		}
+	}
+
 	public  int errorNum(TimeSeries timeSeries) {
 		int errorNum = 0;
 		for(TimePoint tp1 : timeSeries.getTimeseries()) {

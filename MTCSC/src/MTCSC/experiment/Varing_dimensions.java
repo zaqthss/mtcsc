@@ -11,18 +11,16 @@ public class Varing_dimensions {
     public static void main(String[] args) {
         Assist assist = new Assist();
         String inputFileName = "ECG/ECG_5k.csv";
-        double rate = 0.98;
+        // double rate = 0.93;
 
-        int T = 100;
+        int T = 50;
         int n = 32;
-        
-        double[] speed = new double[2];
         double S = 2.1;
-        double[] sMax = new double[32];
-        double[] sMin = new double[32];
         
         int methodNum = 3;
         double[] totalDimension = {1, 2, 4, 8, 16, 32};
+        double[] rate = {0.93, 0.92, 0.91, 0.9, 0.9, 0.9};
+        double[] ss = {0.677, 1.0466, 1.4822, 1.21, 1.8, 3.035};
         double[][] totalRMS = new double[6][methodNum];
         double[][] totalCOST = new double[6][methodNum];
         double[][] totalNUM = new double[6][methodNum];
@@ -38,12 +36,15 @@ public class Varing_dimensions {
             int expTime = 10;
             int size = 5000;
             System.out.println("Dimension is " + n);
+            // System.out.println("rate is " + rate);
             for(int j=0; j<expTime; j++, seed++){
                 // MyN
                 TimeSeriesN dirtySeries_1 = assist.readDataN(inputFileName, ",", 32, n, size);
                 dirtySeries_1 = assist.addNoiseN_maxmin_together_ecg(dirtySeries_1, drate, seed, n);
                 // TimeSeriesN speedSeries_1 = assist.readDataN(inputFileName, ",", 32, n, size);
                 // S = assist.getSpeedN(speedSeries_1, 0.98, n);
+                // S = assist.getSpeedNDirty(dirtySeries_1, rate[i], n);
+                S = ss[i];
                 totalDirtyRMS[0] += assist.RMSN(dirtySeries_1, n);
                 MTCSC_N myn_1 = new MTCSC_N(dirtySeries_1, S, T, n);
                 long time1_1 = System.currentTimeMillis();
@@ -56,6 +57,7 @@ public class Varing_dimensions {
                 totalCOST[i][0] += cost_MyN_1;
                 totalNUM[i][0] += num_MyN_1;
                 totalTIME[i][0] = totalTIME[i][0] + time2_1 - time1_1;
+                // System.out.println("Cluster is " + rms_MyN_1);
 
                 // Global
                 dirtySeries_1 = assist.readDataN(inputFileName, ",", 32, n, size);
@@ -71,6 +73,7 @@ public class Varing_dimensions {
                 totalCOST[i][1] += cost_global;
                 totalNUM[i][1] += num_global;
                 totalTIME[i][1] = totalTIME[i][1] + time_global2-time_global1;
+                // System.out.println("Global is " + rms_global);
 
                 // Local
                 dirtySeries_1 = assist.readDataN(inputFileName, ",", 32, n, size);
@@ -86,6 +89,7 @@ public class Varing_dimensions {
                 totalCOST[i][2] += cost_local;
                 totalNUM[i][2] += num_local;
                 totalTIME[i][2] = totalTIME[i][2] + time_local2-time_local1;
+                // System.out.println("Local is " + rms_local);
             }
             
             for(int j=0; j<methodNum; j++){
