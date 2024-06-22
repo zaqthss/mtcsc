@@ -5,11 +5,22 @@ To enable reproductivity, we open source all datasets, algorithms and codes intr
 
 ## **Note !!!**
 * **Use the IDE to open the MTCSC folder instead of the mtcsc-E4CC folder, which does not contain README.md.**
+* **The folder named MTCSC_python is about 5.3.3 statistical testing and 5.5 application experiments. If you need to reproduce the results, please open it separately using the Python IDE. Details can be found in the "Experiments"**
 
 ## Requirement
 
-- java : 1.7/1.8
-- IDE : IntelliJ IDEA or Visual Studio Code (Recommended for use, confirm that it can run)
+* java
+  * java : 1.7/1.8
+  * IDE : IntelliJ IDEA or Visual Studio Code (Recommended for use, confirm that it can run)
+* python (IDE : pycharm)
+  * python==3.6
+  * torch==1.3.0
+  * sklearn==0.24.2
+  * pandas==1.1.5
+  * numpy==1.19.2
+  * matplotlib==3.3.4
+  * scipy==1.5.4
+  * networkx==2.5.1
 
 ## Code Structure
 * MTCSC/
@@ -77,15 +88,26 @@ If you want to reproduce the experimental results in this paper, simply run a se
   * Path/TAO_dataSize_together.java, results in Result/MultiDimension/TAO/dataSize/together/
 * Section 5.3.3 Varying Data Size
   * In 5.3.1 and 5.3.2
+  * Critical (statistical tests) : Open the MTCSC_python folder using a Python IDE and run /StatisticalTest/sig.py, the result is in /StatisticalTest/fig/
+* Section 5.3.4 Varying Dimension
+  * Path/TAO_dataSize_together.java, results in Result/VaringDimension/
 * Section 5.4.1 GPS Trajectory with Human Walking
   * gps.java, results in Result/GPS/
 * Section 5.4.3 Adaptive Speed with Different Transportation : 
   * Path/DynamicSpeed.java, results in Result/DynamicSpeed/
   * Path/DynamicSpeed_bucket.java, results in Result/DynamicSpeed_Bucket/
   * Path/DynamicSpeed_threshold.java, results in Result/DynamicSpeed_Threshold/
-* Section 5.5 Applications : repair results in Data/UCR, The final classification and clustering experiments were completed using Python
-  * Path/app/ArrowHead.java
-  * Path/app/Car.java
-  * Path/app/DiatomSizeReduction.java
-  * Path/app/Meat.java
+* Section 5.5 Applications : The final classification and clustering experiments were completed using Python. First, you need to run the corresponding Java files below to generate repair results for various algorithms, and then copy the results to the folder corresponding to MTCSC_python/Application/ (already created)
+  * java
+    * Path/app/ArrowHead.java, repair results in Data/UCR
+    * Path/app/Car.java, repair results in Data/UCR
+    * Path/app/DiatomSizeReduction.java, repair results in Data/UCR
+    * Path/app/Meat.java, repair results in Data/UCR
+    * Path/app/AtrialFibrillation.java, repair results in Data/UEA
+    * Path/app/StandWalkJump.java, repair results in Data/UEA
+  * python (Open the MTCSC_python folder using a Python IDE)
+    * MTCSC_python/multi-classification.py -> AtrialFibrillation
+    * MTCSC_python/multi-cluster.py -> StandWalkJump
+    * MTCSC_python/uni-classification.py -> ArrowHead and Car (Removed in revision version)
+    * MTCSC_python/uni-cluster.py -> DSR and Meat (Removed in revision version)
   
