@@ -78,7 +78,7 @@ public class TAO_errorRate_together {
                 double rmsDirty = assist.RMSN(dirtySeries, n);
                 totalDirtyRMS += rmsDirty;
                 
-                // MyN
+                // MTCSC
                 MTCSC_N myn = new MTCSC_N(dirtySeries, S, T, n);
                 long time1 = System.currentTimeMillis();
                 TimeSeriesN resultSeries = myn.mainScreen();
@@ -91,7 +91,7 @@ public class TAO_errorRate_together {
                 totalNUM[i][0] += num_MyN;
                 totalTIME[i][0] = totalTIME[i][0] + time2 - time1;
                 
-                // My1
+                // MTCSC-Uni
                 dirtySeries = assist.readDataN_size(inputFileName, ",", n, size);
                 dirtySeries = assist.addNoiseN_maxmin_together(dirtySeries, drate, seed, n);
                 if(isNormalize){
@@ -223,7 +223,6 @@ public class TAO_errorRate_together {
                 totalNUM[i][4] += num_lsgreedy;
                 totalTIME[i][4] = totalTIME[i][4] + time_lsgreedy2-time_lsgreedy1+time_lsgreedy6-time_lsgreedy5+time_lsgreedy4-time_lsgreedy3;
 
-
                 // expsmooth
                 dirtySeries = assist.readDataN_size(inputFileName, ",", n, size);
                 dirtySeries = assist.addNoiseN_maxmin_together(dirtySeries, drate, seed, n);
@@ -257,7 +256,7 @@ public class TAO_errorRate_together {
                 totalNUM[i][5] += num_exp;
                 totalTIME[i][5] = totalTIME[i][5] + time_exp2-time_exp1+time_exp6-time_exp5+time_exp4-time_exp3;
 
-                // HTD-Cleaning
+                // HTD
                 dirtySeries = assist.readDataN_size(inputFileName, ",", n, size);
                 dirtySeries = assist.addNoiseN_maxmin_together(dirtySeries, drate, seed, n);
                 if(isNormalize){
@@ -290,50 +289,6 @@ public class TAO_errorRate_together {
                 totalCOST[i][6] += cost_HTD;
                 totalNUM[i][6] += num_HTD;
                 totalTIME[i][6] = totalTIME[i][6] + time_HTD2-time_HTD1+time_HTD4-time_HTD3+time_HTD6-time_HTD5;
-                
-                // System.out.println("Seed : " + seed);
-                // System.out.println("  MyN : ");
-                // System.out.println("    Dirty RMS error is " + rmsDirty);
-                // System.out.println("    Repair RMS error is " + rms_MyN);
-                // System.out.println("    Cost is " + cost_MyN);
-                // System.out.println("    The number of modified points is " + num_MyN);
-                // System.out.println("    Time is " + (time2-time1));
-
-                // System.out.println("  My1:");
-                // System.out.println("    Dirty RMS error is " + rmsDirty_My1);
-                // System.out.println("    Repair RMS error is " + rms_My1);
-                // System.out.println("    Cost is " + cost_My1);
-                // System.out.println("    The number of modified points is " + num_My1);
-                // System.out.println("    Time is " + (time_my2-time_my1+time_my22-time_my11+time_my222-time_my111));
-                
-                // System.out.println("  Screen : ");
-                // System.out.println("    Dirty RMS error is " + rmsDirty_Screen);
-                // System.out.println("    Repair RMS error is " + rms_Screen);
-                // System.out.println("    Cost is " + cost_Screen);
-                // System.out.println("    The number of modified points is " + num_Screen);
-                // System.out.println("    Time is " + (time4-time3+time6-time5+time8-time7));
-
-                // System.out.println("  LocalSpeedAcc : ");
-                // System.out.println("    Dirty RMS error is " + rmsDirty_SpeedAcc);
-                // System.out.println("    Repair RMS error is " + rms_SpeedAcc);
-                // System.out.println("    Cost is " + cost_SpeedAcc);
-                // System.out.println("    The number of modified points is " + num_SpeedAcc);
-                // System.out.println("    Time is " + (time_SpeedAcc6-time_SpeedAcc5+time_SpeedAcc4-time_SpeedAcc3+time_SpeedAcc2-time_SpeedAcc1));
-
-                // System.out.println("Lsgreedy:");
-                // System.out.println("    Dirty RMS error is " + rmsDirty_Lsgreedy);
-                // System.out.println("    Repair RMS error is " + rms_lsgreedy);
-                // System.out.println("    Cost is " + cost_lsgreedy);
-                // System.out.println("    The number of modified points is " + num_lsgreedy);
-                // System.out.println("    Time is " + (time_lsgreedy2-time_lsgreedy1+time_lsgreedy6-time_lsgreedy5+time_lsgreedy4-time_lsgreedy3));
-
-                // System.out.println("Expsmooth:");
-                // System.out.println("    Dirty RMS error is " + rmsDirty_expsmooth);
-                // System.out.println("    Repair RMS error is " + rms_exp);
-                // System.out.println("    Cost is " + cost_exp);
-                // System.out.println("    The number of modified points is " + num_exp);
-                // System.out.println("    Time is " + (time_exp2-time_exp1+time_exp6-time_exp5+time_exp4-time_exp3));
-                
             }
             totalDirtyRMS /= expTime;
             System.out.println("Dirty RMS error is " + totalDirtyRMS);

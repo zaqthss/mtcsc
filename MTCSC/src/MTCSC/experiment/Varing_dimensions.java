@@ -27,8 +27,8 @@ public class Varing_dimensions {
         double[][] totalTIME = new double[6][methodNum];
         double[] totalDirtyRMS = new double[6];
 
-        n = 1;
-        for(int i=0; i<6; i++, n=n*2, S=3.0){
+        n = 32;
+        for(int i=5; i>=0; i--, n=n/2, S=3.0){
             int seed = 1;
             double drate= 0.05;
             DecimalFormat df = new DecimalFormat("#.00");

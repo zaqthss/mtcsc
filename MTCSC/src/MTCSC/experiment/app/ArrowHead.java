@@ -127,8 +127,7 @@ public class ArrowHead {
             writePath = dataName+"/"+String.valueOf(drate)+"_"+String.valueOf(seed)+"_Expsmooth.tsv";
             assist.saveTSVFromTimeSeriesList(TimeSeriesList, writePath, labels);
             
-
-            // HTD-Cleaning
+            // HTD
             TimeSeriesList = assist.appAddNoiseTimeSeires(filePath, drate, seed);
             for(int i=0; i<TimeSeriesList.size(); i++){
                 dirtySeries = TimeSeriesList.get(i);

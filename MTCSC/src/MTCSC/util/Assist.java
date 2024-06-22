@@ -1630,6 +1630,50 @@ public class Assist {
 		return timeSeries;
 	}
 
+	public TimeSeriesN addNoiseN_maxmin_together_UEA(TimeSeriesN timeSeries, double drate, int seed, int n, Double[] noiseMinMax) {
+		ArrayList<TimePointN> orgList = timeSeries.getTimeseries();
+		int len = orgList.size();
+		int errorNum = (int) (len * drate);
+
+		// ArrayList<Double> noiseMinMax = getMinMax(orgList, n);
+		double noise=0, noiseLen=0;
+		
+		DecimalFormat df = new DecimalFormat("#.00000");
+		ArrayList<Integer> timelist = new ArrayList<Integer>();
+		for (int i = 0; i < len-1; i++) {
+			if (orgList.get(i+1).getTimestamp()-orgList.get(i).getTimestamp() < 0)
+				timelist.add(i);
+		}
+		
+		ArrayList<Integer> indexlist = new ArrayList<Integer>();
+		Random random = new Random(seed);
+		int index = 0;
+		
+		for (int i = 0; i < errorNum; ++i) {
+			index = random.nextInt(len);
+			if (indexlist.contains(index) || index < 1) {
+				i = i - 1;
+				continue;
+			}
+			indexlist.add(index);
+			
+			for(int j=0; j<n; j++){
+				// Global Max Min
+				noise = random.nextDouble(); // [0.0-1.0]
+				noiseLen = noiseMinMax[1+j*2] - noiseMinMax[j*2];
+				if (noise == 0)
+					noise = noiseMinMax[j*2];
+				else {
+					noise = noise * noiseLen + noiseMinMax[j*2];
+				}
+
+				noise = Double.parseDouble(df.format(noise));
+				orgList.get(index).setN(j, noise);
+			}
+		}
+		return timeSeries;
+	}
+
 	public TimeSeriesN addNoiseN_maxmin_together_ecg(TimeSeriesN timeSeries, double drate, int seed, int n) {
 		ArrayList<TimePointN> orgList = timeSeries.getTimeseries();
 		int len = orgList.size();
@@ -2309,4 +2353,136 @@ public class Assist {
         }
 		return labels;
 	}
+
+	public ArrayList<TimeSeriesN> read_UEA(String filePath, int n){
+		ArrayList<TimeSeriesN> TimeSeriesList = new ArrayList<>();
+		try {
+			Scanner[] scanners = new Scanner[n];
+			for(int i=0; i<n; i++){
+				String fullFilePath = filePath+Integer.toString(i+1)+".csv";
+				scanners[i] = new Scanner(new File(fullFilePath));
+				scanners[i].nextLine();
+			}
+            while (scanners[0].hasNextLine()) {
+				String[] lines = new String[n];
+				String[][] parts = new String[n][];
+				for(int i=0; i<n; i++){
+					lines[i] = scanners[i].nextLine();
+					parts[i] = lines[i].split(",");
+				}
+                ArrayList<Double> value = new ArrayList<Double>();
+				ArrayList<Double> truth = new ArrayList<Double>();
+				long timestamp = 0;
+				TimeSeriesN timeSeries = new TimeSeriesN();
+				for(int j=0; j<parts[0].length; j++){
+					timestamp += 1;
+					for(int i=0; i<n; i++){
+						value.add(Double.parseDouble(parts[i][j]));
+						truth.add(Double.parseDouble(parts[i][j]));
+					}
+					TimePointN tp = new TimePointN(n, timestamp, value, truth);
+					timeSeries.addPoint(tp);
+					value = new ArrayList<Double>();
+					truth = new ArrayList<Double>();
+				}
+				TimeSeriesList.add(timeSeries);
+			}
+            for(int i=0; i<n; i++){
+            	scanners[i].close();
+			}
+			
+            
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found: " + e.getMessage());
+        }
+		return TimeSeriesList;
+	}
+
+	public ArrayList<Integer> UEAGetLabel(String filePath){
+        ArrayList<Integer> labels = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(new File(filePath));
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split(",");
+                String label = parts[0];
+                labels.add(Integer.parseInt(label));
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found: " + e.getMessage());
+        }
+		return labels;
+	}
+
+	public void saveUEAmutil(String filePath, int seed, double drate, ArrayList<TimeSeriesN> TimeSeriesList, int n, String method, int length){
+		try {
+			FileWriter[] writer = new FileWriter[n];
+			for(int i=0; i<n; i++){
+				String fullOutFilePath = filePath+String.valueOf(drate)+"_"+String.valueOf(seed)+"_"+method+"_dim"+Integer.toString(i+1)+".csv";
+				writer[i] = new FileWriter(fullOutFilePath);
+			}
+			for(int i=0; i<length; i++){
+				for(int h=0; h<n; h++){
+					writer[h].write(String.valueOf(i) + ",");
+				}
+			}
+			for(int h=0; h<n; h++){
+				writer[h].write("\n");
+			}
+			for(int i=0; i<TimeSeriesList.size(); i++){
+				ArrayList<TimePointN> Timeseries = TimeSeriesList.get(i).getTimeseries();
+				for(int j=0; j<Timeseries.size(); j++){
+					TimePointN tp = Timeseries.get(j);
+					ArrayList<Double> modify = tp.getModify();
+					for(int h=0; h<n; h++){
+						writer[h].write(String.valueOf(modify.get(h)) + ",");
+					}
+				}
+				for(int h=0; h<n; h++){
+					writer[h].write("\n");
+				}
+			}
+			for(int i=0; i<n; i++){
+				writer[i].close();
+			}
+		}catch (IOException e) {
+			System.err.println("Error: " + e.getMessage());
+		}
+	
+	}
+
+	public void saveUEAuni(String filePath, int seed, double drate, ArrayList<TimeSeries> TimeSeriesList, int n, String method, int length, boolean flag){
+		try {
+			FileWriter[] writer = new FileWriter[n];
+			for(int i=0; i<n; i++){
+				String fullOutFilePath = filePath+String.valueOf(drate)+"_"+String.valueOf(seed)+"_"+method+"_dim"+Integer.toString(i+1)+".csv";
+				writer[i] = new FileWriter(fullOutFilePath, true);
+			}
+			if(flag == true){
+				for(int i=0; i<length; i++){
+					for(int h=0; h<n; h++){
+						writer[h].append(String.valueOf(i) + ",");
+					}
+				}
+				for(int h=0; h<n; h++){
+					writer[h].append("\n");
+				}
+			}
+			for(int i=0; i<n; i++){
+				ArrayList<TimePoint> Timeseries = TimeSeriesList.get(i).getTimeseries();
+				for(int j=0; j<Timeseries.size(); j++){
+					TimePoint tp = Timeseries.get(j);
+					Double modify = tp.getModify();
+					writer[i].append(String.valueOf(modify) + ",");
+				}
+				writer[i].append("\n");
+				writer[i].flush();
+				writer[i].close();
+			}
+		}catch (IOException e) {
+			System.err.println("Error: " + e.getMessage());
+		}
+	}
+
 }

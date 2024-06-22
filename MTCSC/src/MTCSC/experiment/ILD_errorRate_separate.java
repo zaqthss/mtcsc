@@ -26,7 +26,7 @@ public class ILD_errorRate_separate {
         double sMax_2=0.200001;
         double sMin_2=-0.200001;
         double S=0.28285;
-        int methodNum = 9;
+        int methodNum = 8;
         double[] totalDrate = new double[10];
         double[][] totalRMS = new double[10][methodNum];
         double[][] totalCOST = new double[10][methodNum];

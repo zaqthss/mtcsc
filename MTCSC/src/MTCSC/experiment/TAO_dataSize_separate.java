@@ -76,7 +76,7 @@ public class TAO_dataSize_separate {
                 double rmsDirty = assist.RMSN(dirtySeries, n);
                 totalDirtyRMS += rmsDirty;
                 
-                // MyN
+                // MTCSC
                 MTCSC_N myn = new MTCSC_N(dirtySeries, S, T, n);
                 long time1 = System.currentTimeMillis();
                 TimeSeriesN resultSeries = myn.mainScreen();
@@ -89,7 +89,7 @@ public class TAO_dataSize_separate {
                 totalNUM[i][0] += num_MyN;
                 totalTIME[i][0] = totalTIME[i][0] + time2 - time1;
                 
-                // My1
+                // MTCSC-Uni
                 dirtySeries = assist.readDataN_size(inputFileName, ",", n, size);
                 dirtySeries = assist.addNoiseN_maxmin_separate(dirtySeries, drate, seed, n);
                 if(isNormalize){
@@ -255,83 +255,39 @@ public class TAO_dataSize_separate {
                 totalNUM[i][5] += num_exp;
                 totalTIME[i][5] = totalTIME[i][5] + time_exp2-time_exp1+time_exp6-time_exp5+time_exp4-time_exp3;
 
-                // HTD-Cleaning
-                // dirtySeries = assist.readDataN_size(inputFileName, ",", n, size);
-                // dirtySeries = assist.addNoiseN_maxmin_separate(dirtySeries, drate, seed, n);
-                // if(isNormalize){
-                //     assist.normalizeN(dirtySeries, n);
-                // }
-                // dirtySeries_1 = assist.getN(dirtySeries, 0);
-                // dirtySeries_2 = assist.getN(dirtySeries, 1);
-                // dirtySeries_3 = assist.getN(dirtySeries, 2);
-                // double rmsDirty_HTD = assist.RMS1(dirtySeries_1, dirtySeries_2, dirtySeries_3);
-                // int maxnum = 1000;
-                // // HTD1
-                // HTD htd_1 = new HTD(dirtySeries_1, sMax_1, sMin_1, 1, maxnum);
-                // long time_HTD1 = System.currentTimeMillis();
-                // TimeSeries resultSeries_HTD_1 = htd_1.clean();
-                // long time_HTD2 = System.currentTimeMillis();
-                // // HTD2
-                // HTD htd_2 = new HTD(dirtySeries_2, sMax_2, sMin_2, 1, maxnum);
-                // long time_HTD3 = System.currentTimeMillis();
-                // TimeSeries resultSeries_HTD_2 = htd_2.clean();
-                // long time_HTD4 = System.currentTimeMillis();
-                // // HTD3
-                // HTD htd_3 = new HTD(dirtySeries_3, sMax_3, sMin_3, 1, maxnum);
-                // long time_HTD5 = System.currentTimeMillis();
-                // TimeSeries resultSeries_HTD_3 = htd_3.clean();
-                // long time_HTD6 = System.currentTimeMillis();
-                // double rms_HTD = assist.RMS1(resultSeries_HTD_1, resultSeries_HTD_2, resultSeries_HTD_3);
-                // double cost_HTD = assist.Cost33(resultSeries_HTD_1, resultSeries_HTD_2, resultSeries_HTD_3);
-                // int num_HTD = assist.pointNum111(resultSeries_HTD_1, resultSeries_HTD_2, resultSeries_HTD_3);
-                // totalRMS[i][6] += rms_HTD;
-                // totalCOST[i][6] += cost_HTD;
-                // totalNUM[i][6] += num_HTD;
-                // totalTIME[i][6] = totalTIME[i][6] + time_HTD2-time_HTD1+time_HTD4-time_HTD3+time_HTD6-time_HTD5;
-                
-                // System.out.println("Seed : " + seed);
-                // System.out.println("  MyN : ");
-                // System.out.println("    Dirty RMS error is " + rmsDirty);
-                // System.out.println("    Repair RMS error is " + rms_MyN);
-                // System.out.println("    Cost is " + cost_MyN);
-                // System.out.println("    The number of modified points is " + num_MyN);
-                // System.out.println("    Time is " + (time2-time1));
-
-                // System.out.println("  My1:");
-                // System.out.println("    Dirty RMS error is " + rmsDirty_My1);
-                // System.out.println("    Repair RMS error is " + rms_My1);
-                // System.out.println("    Cost is " + cost_My1);
-                // System.out.println("    The number of modified points is " + num_My1);
-                // System.out.println("    Time is " + (time_my2-time_my1+time_my22-time_my11+time_my222-time_my111));
-                
-                // System.out.println("  Screen : ");
-                // System.out.println("    Dirty RMS error is " + rmsDirty_Screen);
-                // System.out.println("    Repair RMS error is " + rms_Screen);
-                // System.out.println("    Cost is " + cost_Screen);
-                // System.out.println("    The number of modified points is " + num_Screen);
-                // System.out.println("    Time is " + (time4-time3+time6-time5+time8-time7));
-
-                // System.out.println("  LocalSpeedAcc : ");
-                // System.out.println("    Dirty RMS error is " + rmsDirty_SpeedAcc);
-                // System.out.println("    Repair RMS error is " + rms_SpeedAcc);
-                // System.out.println("    Cost is " + cost_SpeedAcc);
-                // System.out.println("    The number of modified points is " + num_SpeedAcc);
-                // System.out.println("    Time is " + (time_SpeedAcc6-time_SpeedAcc5+time_SpeedAcc4-time_SpeedAcc3+time_SpeedAcc2-time_SpeedAcc1));
-
-                // System.out.println("Lsgreedy:");
-                // System.out.println("    Dirty RMS error is " + rmsDirty_Lsgreedy);
-                // System.out.println("    Repair RMS error is " + rms_lsgreedy);
-                // System.out.println("    Cost is " + cost_lsgreedy);
-                // System.out.println("    The number of modified points is " + num_lsgreedy);
-                // System.out.println("    Time is " + (time_lsgreedy2-time_lsgreedy1+time_lsgreedy6-time_lsgreedy5+time_lsgreedy4-time_lsgreedy3));
-
-                // System.out.println("Expsmooth:");
-                // System.out.println("    Dirty RMS error is " + rmsDirty_expsmooth);
-                // System.out.println("    Repair RMS error is " + rms_exp);
-                // System.out.println("    Cost is " + cost_exp);
-                // System.out.println("    The number of modified points is " + num_exp);
-                // System.out.println("    Time is " + (time_exp2-time_exp1+time_exp6-time_exp5+time_exp4-time_exp3));
-                
+                // HTD
+                dirtySeries = assist.readDataN_size(inputFileName, ",", n, size);
+                dirtySeries = assist.addNoiseN_maxmin_separate(dirtySeries, drate, seed, n);
+                if(isNormalize){
+                    assist.normalizeN(dirtySeries, n);
+                }
+                dirtySeries_1 = assist.getN(dirtySeries, 0);
+                dirtySeries_2 = assist.getN(dirtySeries, 1);
+                dirtySeries_3 = assist.getN(dirtySeries, 2);
+                double rmsDirty_HTD = assist.RMS1(dirtySeries_1, dirtySeries_2, dirtySeries_3);
+                int maxnum = 1000;
+                // HTD1
+                HTD htd_1 = new HTD(dirtySeries_1, sMax_1, sMin_1, 1, maxnum);
+                long time_HTD1 = System.currentTimeMillis();
+                TimeSeries resultSeries_HTD_1 = htd_1.clean();
+                long time_HTD2 = System.currentTimeMillis();
+                // HTD2
+                HTD htd_2 = new HTD(dirtySeries_2, sMax_2, sMin_2, 1, maxnum);
+                long time_HTD3 = System.currentTimeMillis();
+                TimeSeries resultSeries_HTD_2 = htd_2.clean();
+                long time_HTD4 = System.currentTimeMillis();
+                // HTD3
+                HTD htd_3 = new HTD(dirtySeries_3, sMax_3, sMin_3, 1, maxnum);
+                long time_HTD5 = System.currentTimeMillis();
+                TimeSeries resultSeries_HTD_3 = htd_3.clean();
+                long time_HTD6 = System.currentTimeMillis();
+                double rms_HTD = assist.RMS1(resultSeries_HTD_1, resultSeries_HTD_2, resultSeries_HTD_3);
+                double cost_HTD = assist.Cost33(resultSeries_HTD_1, resultSeries_HTD_2, resultSeries_HTD_3);
+                int num_HTD = assist.pointNum111(resultSeries_HTD_1, resultSeries_HTD_2, resultSeries_HTD_3);
+                totalRMS[i][6] += rms_HTD;
+                totalCOST[i][6] += cost_HTD;
+                totalNUM[i][6] += num_HTD;
+                totalTIME[i][6] = totalTIME[i][6] + time_HTD2-time_HTD1+time_HTD4-time_HTD3+time_HTD6-time_HTD5;   
             }
             totalDirtyRMS /= expTime;
             System.out.println("Dirty RMS error is " + totalDirtyRMS);

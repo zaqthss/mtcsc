@@ -91,7 +91,7 @@ public class stock {
                 // System.out.println("    The number of modified points is " + num_local);
                 // System.out.println("    Time is " + (time_local2-time_local1));
 
-                // My1
+                // MTCSC-Uni
                 dirtySeries = assist.readData(inputFileName, ",");
                 dirtySeries = assist.addNoise_stock(dirtySeries, drate, seed);
                 rmsDirty = assist.calcRMS(dirtySeries);

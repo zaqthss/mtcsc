@@ -17,13 +17,7 @@ import MTCSC.util.Assist;
 
 public class DynamicSpeed {
     public static void main(String[] args) {
-        Assist assist = new Assist();
-        // String inputFileName = "DynamicSpeed/dstest.data";  // dynamic speed test dataset
-        String inputFileName = "DynamicSpeed/dynamicSpeed2.data";  
-
-        int T1 = 100;
-        int T2 = 100;
-
+        // Need to uncomment the corresponding mode of transportation : walk, run, bicycle
         // walk
         double sMax_1 = 2.2000; //1.66520m/s
         double sMin_1 = -2.2000;
@@ -45,42 +39,20 @@ public class DynamicSpeed {
         // double sMin_2 = -6.6000;
         // double S = 6.6000;
         // String motion = "bicycle";
-        
-        // get speed
-        // TimeSeries2 speedSeries = assist.readData2(inputFileName, ",");
-        // TimeSeries speedSeries_1 = assist.getXY(speedSeries, 0);
-        // TimeSeries speedSeries_2 = assist.getXY(speedSeries, 1);
-        // double[] speed = new double[2];
-        // double rate = 1;
-        // S = assist.getSpeed2(speedSeries, rate);
-        // speed = assist.getSpeed(speedSeries_1, rate);
-        // sMin_1 = speed[0]; sMax_1 = speed[1];
-        // speed = assist.getSpeed(speedSeries_2, rate);
-        // sMin_2 = speed[0]; sMax_2 = speed[1];
+        Assist assist = new Assist();
+        // String inputFileName = "DynamicSpeed/dstest.data";  // dynamic speed test dataset
+        String inputFileName = "DynamicSpeed/dynamicSpeed2.data";  
 
-        int methodNum = 10;
+        int T1 = 100;
+        int T2 = 100;
+        int methodNum = 9;
         double[] totalRMS = new double[methodNum];
         double[] totalCOST = new double[methodNum];
         int[] totalNUM = new int[methodNum];
         long[] totalTIME = new long[methodNum];
 
-        // My2
+        // MTCSC
         TimeSeries2 dirtySeries = assist.readData2(inputFileName, ",");
-        // double rmsDirty_two = assist.RMS2(dirtySeries);
-        MTCSC_QCQP screen2 = new MTCSC_QCQP(dirtySeries, S, T2);
-        long time1 = System.currentTimeMillis();
-        TimeSeries2 resultSeries_two = screen2.mainScreen();
-        long time2 = System.currentTimeMillis();
-        double rms_two = assist.RMS2(resultSeries_two);
-        double cost_two = assist.Cost22(resultSeries_two);
-        int num_two = assist.pointNum22(resultSeries_two);
-        totalRMS[0] += rms_two;
-        totalCOST[0] += cost_two;
-        totalNUM[0] += num_two;
-        totalTIME[0] = totalTIME[0] + time2-time1;
-
-        // two-plus
-        dirtySeries = assist.readData2(inputFileName, ",");
         // double rmsDirty_twoPlus = assist.RMS2(dirtySeries);
         MTCSC_2 tp = new MTCSC_2(dirtySeries, S, T2);
         long time100 = System.currentTimeMillis();
@@ -94,7 +66,7 @@ public class DynamicSpeed {
         totalNUM[1] += num_twoPlus;
         totalTIME[1] = totalTIME[1] + time200-time100;
 
-        // two-plus-ds
+        // MTCSC-A
         dirtySeries = assist.readData2(inputFileName, ",");
         double rmsDirty_twoPlusDS = assist.RMS2(dirtySeries);
         MTCSC_AS tpDS = new MTCSC_AS(dirtySeries, S, T2, 0.025, 0.75, 150, 0.75, 5);
@@ -109,28 +81,8 @@ public class DynamicSpeed {
         totalCOST[2] += cost_twoPlusDS;
         totalNUM[2] += num_twoPlusDS;
         totalTIME[2] = totalTIME[2] + time_twoPlusDS2-time_twoPlusDS1;
-        // double[] orgval = new double[2];
-        // double[] modify = new double[2];
-        // double[] truth = new double[2];
-        // for(TimePoint2 tp1 : resultSeries_twoPlusDS.getTimeseries()) {
-        // orgval = tp1.getOrgval();
-        // modify = tp1.getModify();
-        // truth = tp1.getTruth();
-        //     // if(orgval[0] != modify[0] || orgval[1] != modify[1]){
-        //     //     System.out.println(tp1.getTimestamp() + ", x_orgval=" +
-        //     // orgval[0] + " ,x_modify=" + modify[0] + " , x_truth=" +
-        //     // truth[0] + " , y_orgval=" + orgval[1] + " ,y_modify=" +
-        //     // modify[1] + " , y_truth=" + truth[1]);
-        //     // }
-        //     if(Math.abs(truth[0]-modify[0]) >2|| Math.abs(truth[1]-modify[1]) >2){
-        //         System.out.println(tp1.getTimestamp() + ", x_orgval=" +
-        //     orgval[0] + " ,x_modify=" + modify[0] + " , x_truth=" +
-        //     truth[0] + " , y_orgval=" + orgval[1] + " ,y_modify=" +
-        //     modify[1] + " , y_truth=" + truth[1]);
-        //     }
-        // }
 
-        // My1
+        // MTCSC-Uni
         dirtySeries = assist.readData2(inputFileName, ",");
         TimeSeries dirtySeries_1 = assist.getXY(dirtySeries, 0);
         TimeSeries dirtySeries_2 = assist.getXY(dirtySeries, 1);
@@ -287,8 +239,8 @@ public class DynamicSpeed {
         totalNUM[9] += num_HTD;
         totalTIME[9] = totalTIME[9] + time_HTD2-time_HTD1+time_HTD4-time_HTD3;
 
-        String[][] data = new String[5][11];
-        data[0] = new String[]{" ", "My2","MTCSC","MTCSC-A","MTCSC-Uni","RCSWS","SCREEN","SpeedAcc","LsGreedy","EWMA","HTD"};
+        String[][] data = new String[5][10];
+        data[0] = new String[]{" ","MTCSC","MTCSC-A","MTCSC-Uni","RCSWS","SCREEN","SpeedAcc","LsGreedy","EWMA","HTD"};
         data[1][0] = "RMS";
         data[2][0] = "Cost";
         data[3][0] = "Number";
@@ -319,20 +271,20 @@ public class DynamicSpeed {
         // System.out.println("    The number of modified points is " + num_twoPlus);
 
         // two-plus-DS
-        System.out.println("two-plus-ds:");
-        System.out.println("    Dirty RMS error is " + rmsDirty_twoPlusDS);
-        System.out.println("    Repair RMS error is " + rms_twoPlusDS);
-        System.out.println("    Cost is " + cost_twoPlusDS);
-        System.out.println("    Time is " + (time_twoPlusDS2-time_twoPlusDS1));
-        System.out.println("    The number of modified points is " + num_twoPlusDS);
+        // System.out.println("two-plus-ds:");
+        // System.out.println("    Dirty RMS error is " + rmsDirty_twoPlusDS);
+        // System.out.println("    Repair RMS error is " + rms_twoPlusDS);
+        // System.out.println("    Cost is " + cost_twoPlusDS);
+        // System.out.println("    Time is " + (time_twoPlusDS2-time_twoPlusDS1));
+        // System.out.println("    The number of modified points is " + num_twoPlusDS);
 
         // My1
-        System.out.println("My1:");
-        System.out.println("    Dirty RMS error is " + rmsDirty_My1);
-        System.out.println("    Repair RMS error is " + rms_My1);
-        System.out.println("    Cost is " + cost_My1);
-        System.out.println("    Time is " + (time_my22-time_my11+time_my2-time_my1));
-        System.out.println("    The number of modified points is " + num_My1);
+        // System.out.println("My1:");
+        // System.out.println("    Dirty RMS error is " + rmsDirty_My1);
+        // System.out.println("    Repair RMS error is " + rms_My1);
+        // System.out.println("    Cost is " + cost_My1);
+        // System.out.println("    Time is " + (time_my22-time_my11+time_my2-time_my1));
+        // System.out.println("    The number of modified points is " + num_My1);
 
         // rcsws
         // System.out.println("rcsws:");
@@ -359,12 +311,12 @@ public class DynamicSpeed {
         // System.out.println("    The number of modified points is " + num_SpeedAcc);
 
         // Lsgreedy
-        System.out.println("Lsgreedy:");
-        System.out.println("    Dirty RMS error is " + rmsDirty_lsgreedy);
-        System.out.println("    Repair RMS error is " + rms_lsgreedy);
-        System.out.println("    Cost is " + cost_lsgreedy);
-        System.out.println("    Time is " + (time444-time333+time666-time555));
-        System.out.println("    The number of modified points is " + num_lsgreedy);
+        // System.out.println("Lsgreedy:");
+        // System.out.println("    Dirty RMS error is " + rmsDirty_lsgreedy);
+        // System.out.println("    Repair RMS error is " + rms_lsgreedy);
+        // System.out.println("    Cost is " + cost_lsgreedy);
+        // System.out.println("    Time is " + (time444-time333+time666-time555));
+        // System.out.println("    The number of modified points is " + num_lsgreedy);
 
         //expsmooth
         // System.out.println("ExpSmooth:");

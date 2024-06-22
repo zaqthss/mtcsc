@@ -285,99 +285,99 @@ public class gps {
         assist.writeCSV(writefilename, data);
 
         // two-dimensional
-        System.out.println("two-dimensional:");
-        System.out.println("    Dirty RMS error is " + rmsDirty_two);
-        System.out.println("    Repair RMS error is " + rms_two);
-        System.out.println("    Cost is " + cost_two);
-        System.out.println("    Time is " + (time2-time1));
-        System.out.println("    The number of modified points is " + num_two);
+        // System.out.println("two-dimensional:");
+        // System.out.println("    Dirty RMS error is " + rmsDirty_two);
+        // System.out.println("    Repair RMS error is " + rms_two);
+        // System.out.println("    Cost is " + cost_two);
+        // System.out.println("    Time is " + (time2-time1));
+        // System.out.println("    The number of modified points is " + num_two);
 
-        // Global
-        System.out.println("Global:");
-        System.out.println("    Dirty RMS error is " + rmsDirty_global);
-        System.out.println("    Repair RMS error is " + rms_global);
-        System.out.println("    Cost is " + cost_global);
-        System.out.println("    Time is " + (time_global2-time_global1));
-        System.out.println("    The number of modified points is " + num_global);
+        // // Global
+        // System.out.println("Global:");
+        // System.out.println("    Dirty RMS error is " + rmsDirty_global);
+        // System.out.println("    Repair RMS error is " + rms_global);
+        // System.out.println("    Cost is " + cost_global);
+        // System.out.println("    Time is " + (time_global2-time_global1));
+        // System.out.println("    The number of modified points is " + num_global);
 
-        // Local
-        System.out.println("Global:");
-        System.out.println("    Dirty RMS error is " + rmsDirty_local);
-        System.out.println("    Repair RMS error is " + rms_local);
-        System.out.println("    Cost is " + cost_local);
-        System.out.println("    Time is " + (time_local2-time_local1));
-        System.out.println("    The number of modified points is " + num_local);
+        // // Local
+        // System.out.println("Global:");
+        // System.out.println("    Dirty RMS error is " + rmsDirty_local);
+        // System.out.println("    Repair RMS error is " + rms_local);
+        // System.out.println("    Cost is " + cost_local);
+        // System.out.println("    Time is " + (time_local2-time_local1));
+        // System.out.println("    The number of modified points is " + num_local);
 
-        // two-plus
-        System.out.println("two-plus:");
-        System.out.println("    Dirty RMS error is " + rmsDirty_twoPlus);
-        System.out.println("    Repair RMS error is " + rms_twoPlus);
-        System.out.println("    Cost is " + cost_twoPlus);
-        System.out.println("    Time is " + (time200-time100));
-        System.out.println("    The number of modified points is " + num_twoPlus);
+        // // two-plus
+        // System.out.println("two-plus:");
+        // System.out.println("    Dirty RMS error is " + rmsDirty_twoPlus);
+        // System.out.println("    Repair RMS error is " + rms_twoPlus);
+        // System.out.println("    Cost is " + cost_twoPlus);
+        // System.out.println("    Time is " + (time200-time100));
+        // System.out.println("    The number of modified points is " + num_twoPlus);
 
-        // two-plus-DS
-        System.out.println("two-plus-ds:");
-        System.out.println("    Dirty RMS error is " + rmsDirty_twoPlusDS);
-        System.out.println("    Repair RMS error is " + rms_twoPlusDS);
-        System.out.println("    Cost is " + cost_twoPlusDS);
-        System.out.println("    Time is " + (time_twoPlusDS2-time_twoPlusDS1));
-        System.out.println("    The number of modified points is " + num_twoPlusDS);
+        // // two-plus-DS
+        // System.out.println("two-plus-ds:");
+        // System.out.println("    Dirty RMS error is " + rmsDirty_twoPlusDS);
+        // System.out.println("    Repair RMS error is " + rms_twoPlusDS);
+        // System.out.println("    Cost is " + cost_twoPlusDS);
+        // System.out.println("    Time is " + (time_twoPlusDS2-time_twoPlusDS1));
+        // System.out.println("    The number of modified points is " + num_twoPlusDS);
 
-        // My1
-        System.out.println("My1:");
-        System.out.println("    Dirty RMS error is " + rmsDirty_My1);
-        System.out.println("    Repair RMS error is " + rms_My1);
-        System.out.println("    Cost is " + cost_My1);
-        System.out.println("    Time is " + (time_my22-time_my11+time_my2-time_my1));
-        System.out.println("    The number of modified points is " + num_My1);
+        // // My1
+        // System.out.println("My1:");
+        // System.out.println("    Dirty RMS error is " + rmsDirty_My1);
+        // System.out.println("    Repair RMS error is " + rms_My1);
+        // System.out.println("    Cost is " + cost_My1);
+        // System.out.println("    Time is " + (time_my22-time_my11+time_my2-time_my1));
+        // System.out.println("    The number of modified points is " + num_My1);
 
-        // rcsws
-        System.out.println("rcsws:");
-        System.out.println("    Dirty RMS error is " + rmsDirty_rcsws);
-        System.out.println("    Repair RMS error is " + rms_rcsws);
-        System.out.println("    Cost is " + cost_rcsws);
-        System.out.println("    Time is " + (time_rcsws2-time_rcsws1));
-        System.out.println("    The number of modified points is " + num_rcsws);
+        // // rcsws
+        // System.out.println("rcsws:");
+        // System.out.println("    Dirty RMS error is " + rmsDirty_rcsws);
+        // System.out.println("    Repair RMS error is " + rms_rcsws);
+        // System.out.println("    Cost is " + cost_rcsws);
+        // System.out.println("    Time is " + (time_rcsws2-time_rcsws1));
+        // System.out.println("    The number of modified points is " + num_rcsws);
 
-        // Screen
-        System.out.println("Screen:");
-        System.out.println("    Dirty RMS error is " + rmsDirty_12);
-        System.out.println("    Repair RMS error is " + rms_12);
-        System.out.println("    Cost is " + cost_12);
-        System.out.println("    Time is " + (time4-time3+time6-time5));
-        System.out.println("    The number of modified points is " + num_1);
+        // // Screen
+        // System.out.println("Screen:");
+        // System.out.println("    Dirty RMS error is " + rmsDirty_12);
+        // System.out.println("    Repair RMS error is " + rms_12);
+        // System.out.println("    Cost is " + cost_12);
+        // System.out.println("    Time is " + (time4-time3+time6-time5));
+        // System.out.println("    The number of modified points is " + num_1);
 
-        // SpeedAcc
-        System.out.println("SpeedAcc:");
-        System.out.println("    Dirty RMS error is " + rmsDirty_SpeedAcc);
-        System.out.println("    Repair RMS error is " + rms_SpeedAcc);
-        System.out.println("    Cost is " + cost_SpeedAcc);
-        System.out.println("    Time is " + (time_SpeedAcc4-time_SpeedAcc3+time_SpeedAcc2-time_SpeedAcc1));
-        System.out.println("    The number of modified points is " + num_SpeedAcc);
+        // // SpeedAcc
+        // System.out.println("SpeedAcc:");
+        // System.out.println("    Dirty RMS error is " + rmsDirty_SpeedAcc);
+        // System.out.println("    Repair RMS error is " + rms_SpeedAcc);
+        // System.out.println("    Cost is " + cost_SpeedAcc);
+        // System.out.println("    Time is " + (time_SpeedAcc4-time_SpeedAcc3+time_SpeedAcc2-time_SpeedAcc1));
+        // System.out.println("    The number of modified points is " + num_SpeedAcc);
 
-        // Lsgreedy
-        System.out.println("Lsgreedy:");
-        System.out.println("    Dirty RMS error is " + rmsDirty_lsgreedy);
-        System.out.println("    Repair RMS error is " + rms_lsgreedy);
-        System.out.println("    Cost is " + cost_lsgreedy);
-        System.out.println("    Time is " + (time444-time333+time666-time555));
-        System.out.println("    The number of modified points is " + num_lsgreedy);
+        // // Lsgreedy
+        // System.out.println("Lsgreedy:");
+        // System.out.println("    Dirty RMS error is " + rmsDirty_lsgreedy);
+        // System.out.println("    Repair RMS error is " + rms_lsgreedy);
+        // System.out.println("    Cost is " + cost_lsgreedy);
+        // System.out.println("    Time is " + (time444-time333+time666-time555));
+        // System.out.println("    The number of modified points is " + num_lsgreedy);
 
-        //expsmooth
-        System.out.println("ExpSmooth:");
-        System.out.println("    Dirty RMS error is " + rmsDirty_expsmooth);
-        System.out.println("    Repair RMS error is " + rms_expsmooth);
-        System.out.println("    Cost is " + cost_expsmooth);
-        System.out.println("    Time is " + (time18-time17+time20-time19));
-        System.out.println("    The number of modified points is " + num_expsmooth);
+        // //expsmooth
+        // System.out.println("ExpSmooth:");
+        // System.out.println("    Dirty RMS error is " + rmsDirty_expsmooth);
+        // System.out.println("    Repair RMS error is " + rms_expsmooth);
+        // System.out.println("    Cost is " + cost_expsmooth);
+        // System.out.println("    Time is " + (time18-time17+time20-time19));
+        // System.out.println("    The number of modified points is " + num_expsmooth);
 
-        //HTD
-        System.out.println("HTD:");
-        System.out.println("    Dirty RMS error is " + rmsDirty_HTD);
-        System.out.println("    Repair RMS error is " + rms_HTD);
-        System.out.println("    Cost is " + cost_HTD);
-        System.out.println("    Time is " + (time_HTD2-time_HTD1+time_HTD4-time_HTD3));
-        System.out.println("    The number of modified points is " + num_HTD);
+        // //HTD
+        // System.out.println("HTD:");
+        // System.out.println("    Dirty RMS error is " + rmsDirty_HTD);
+        // System.out.println("    Repair RMS error is " + rms_HTD);
+        // System.out.println("    Cost is " + cost_HTD);
+        // System.out.println("    Time is " + (time_HTD2-time_HTD1+time_HTD4-time_HTD3));
+        // System.out.println("    The number of modified points is " + num_HTD);
     }
 }

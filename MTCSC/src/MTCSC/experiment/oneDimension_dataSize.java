@@ -50,7 +50,7 @@ public class oneDimension_dataSize {
                 // double[] speed = assist.getSpeed(dirtySeries, 1.0);
                 // sMin = speed[0]; sMax = speed[1];
 
-                // my
+                // MTCSC-Uni
                 MTCSC_Uni my = new MTCSC_Uni(dirtySeries, sMax, sMin, T);
                 long time_my1 = System.currentTimeMillis();
                 TimeSeries resultSeries_my = my.mainScreen();

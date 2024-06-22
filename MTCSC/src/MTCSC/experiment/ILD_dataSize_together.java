@@ -26,7 +26,7 @@ public class ILD_dataSize_together {
         double sMax_2=0.200001;
         double sMin_2=-0.200001;
         double S=0.28285;
-        int methodNum = 9;
+        int methodNum = 8;
         double[] totalSize = new double[9];
         double[][] totalRMS = new double[9][methodNum];
         double[][] totalCOST = new double[9][methodNum];
@@ -69,21 +69,7 @@ public class ILD_dataSize_together {
                 double rmsDirty_two = assist.RMS2(dirtySeries);
                 totalDirtyRMS += rmsDirty_two;
 
-                // My2
-                MTCSC_QCQP MTCSC2 = new MTCSC_QCQP(dirtySeries, S, T2);
-                long time1 = System.currentTimeMillis();
-                TimeSeries2 resultSeries_two = MTCSC2.mainScreen();
-                long time2 = System.currentTimeMillis();
-
-                double rms_two = assist.RMS2(resultSeries_two);
-                double cost_two = assist.Cost22(resultSeries_two);
-                int num_two = assist.pointNum22(resultSeries_two);
-                totalRMS[i][0] += rms_two;
-                totalCOST[i][0] += cost_two;
-                totalNUM[i][0] += num_two;
-                totalTIME[i][0] = totalTIME[i][0] + time2-time1;
-
-                // two-plus
+                // MTCSC
                 cleanSeries = assist.readData2_size(inputFileName, ",", size);
                 dirtySeries = assist.addNoise2_maxmin_together(cleanSeries, drate, seed);
                 if(isNormalize){
@@ -98,31 +84,12 @@ public class ILD_dataSize_together {
                 double rms_twoPlus = assist.RMS2(resultSeries_twoPlus);
                 double cost_twoPlus = assist.Cost22(resultSeries_twoPlus);
                 int num_twoPlus = assist.pointNum22(resultSeries_twoPlus);
-                totalRMS[i][1] += rms_twoPlus;
-                totalCOST[i][1] += cost_twoPlus;
-                totalNUM[i][1] += num_twoPlus;
-                totalTIME[i][1] = totalTIME[i][1] + time200-time100;
+                totalRMS[i][0] += rms_twoPlus;
+                totalCOST[i][0] += cost_twoPlus;
+                totalNUM[i][0] += num_twoPlus;
+                totalTIME[i][0] = totalTIME[i][0] + time200-time100;
 
-                // two-plus-ds
-                // cleanSeries = assist.readData2_size(inputFileName, ",", size);
-                // dirtySeries = assist.addNoiseGPS_maxmin_together(cleanSeries, drate, seed);
-                // if(isNormalize){
-                //     assist.normalize(dirtySeries);
-                // }
-                // double rmsDirty_twoPlusDS = assist.RMS2(dirtySeries);
-                // My2_plus_ds tpDS = new My2_plus_ds(dirtySeries, S, T2, drate, 1.0, 200);
-                // long time_twoPlusDS1 = System.currentTimeMillis();
-                // TimeSeries2 resultSeries_twoPlusDS = tpDS.mainScreen();
-                // long time_twoPlusDS2 = System.currentTimeMillis();
-                // double rms_twoPlusDS = assist.RMS2(resultSeries_twoPlusDS);
-                // double cost_twoPlusDS = assist.Cost22(resultSeries_twoPlusDS);
-                // int num_twoPlusDS = assist.pointNum22(resultSeries_twoPlusDS);
-                // totalRMS[i][2] += rms_twoPlusDS;
-                // totalCOST[i][2] += cost_twoPlusDS;
-                // totalNUM[i][2] += num_twoPlusDS;
-                // totalTIME[i][2] = totalTIME[i][2] + time_twoPlusDS2-time_twoPlusDS1;
-
-                // My1
+                // MTCSC-Uni
                 cleanSeries = assist.readData2_size(inputFileName, ",", size);
                 dirtySeries = assist.addNoise2_maxmin_together(cleanSeries, drate, seed);
                 if(isNormalize){
@@ -144,23 +111,10 @@ public class ILD_dataSize_together {
                 double rms_My1 = assist.RMS1(resultSeries_my1_1, resultSeries_my1_2);
                 double cost_My1 = assist.Cost11(resultSeries_my1_1, resultSeries_my1_2);
                 int num_My1 = assist.pointNum11(resultSeries_my1_1, resultSeries_my1_2);
-                totalRMS[i][2] += rms_My1;
-                totalCOST[i][2] += cost_My1;
-                totalNUM[i][2] += num_My1;
-                totalTIME[i][2] = totalTIME[i][2] +time_my22-time_my11+time_my2-time_my1;
-                // for(TimePoint tp1 : resultSeries_my1_1.getTimeseries()) {
-                //     if(Math.abs(tp1.getTruth()-tp1.getModify())>1){
-                //         System.out.println(tp1.getTimestamp() + "," + 
-                //             tp1.getValue() + "," + tp1.getModify() + "," + tp1.getTruth());
-                //     }
-                // }
-                // for(TimePoint tp1 : resultSeries_my1_2.getTimeseries()) {
-                //     if(Math.abs(tp1.getTruth()-tp1.getModify())>1){
-                //         System.out.println(tp1.getTimestamp() + "," + 
-                //             tp1.getValue() + "," + tp1.getModify() + "," + tp1.getTruth());
-                //     }
-                // }
-
+                totalRMS[i][1] += rms_My1;
+                totalCOST[i][1] += cost_My1;
+                totalNUM[i][1] += num_My1;
+                totalTIME[i][1] = totalTIME[i][1] +time_my22-time_my11+time_my2-time_my1;
 
                 // RCSWS
                 cleanSeries = assist.readData2_size(inputFileName, ",", size);
@@ -177,10 +131,10 @@ public class ILD_dataSize_together {
                 double rms_rcsws = assist.RMS2(resultSeries_rcsws);
                 double cost_rcsws = assist.Cost22(resultSeries_rcsws);
                 int num_rcsws = assist.pointNum22(resultSeries_rcsws);
-                totalRMS[i][8] += rms_rcsws;
-                totalCOST[i][8] += cost_rcsws;
-                totalNUM[i][8] += num_rcsws;
-                totalTIME[i][8] = totalTIME[i][8] + time_rcsws2-time_rcsws1;
+                totalRMS[i][7] += rms_rcsws;
+                totalCOST[i][7] += cost_rcsws;
+                totalNUM[i][7] += num_rcsws;
+                totalTIME[i][7] = totalTIME[i][7] + time_rcsws2-time_rcsws1;
             
                 // Screen
                 cleanSeries = assist.readData2_size(inputFileName, ",", size);
@@ -205,10 +159,10 @@ public class ILD_dataSize_together {
                 double rms_12 = assist.RMS1(resultSeries_1, resultSeries_2);
                 double cost_12 = assist.Cost11(resultSeries_1, resultSeries_2);
                 int num_1 = assist.pointNum11(resultSeries_1, resultSeries_2);
-                totalRMS[i][3] += rms_12;
-                totalCOST[i][3] += cost_12;
-                totalNUM[i][3] += num_1;
-                totalTIME[i][3] = totalTIME[i][3] + time6-time5+time4-time3;
+                totalRMS[i][2] += rms_12;
+                totalCOST[i][2] += cost_12;
+                totalNUM[i][2] += num_1;
+                totalTIME[i][2] = totalTIME[i][2] + time6-time5+time4-time3;
                 
                 // SpeedAcc
                 cleanSeries = assist.readData2_size(inputFileName, ",", size);
@@ -233,10 +187,10 @@ public class ILD_dataSize_together {
                 double rms_SpeedAcc = assist.RMS1(resultSeries_LocalSpeedAcc_1, resultSeries_LocalSpeedAcc_2);
                 double cost_SpeedAcc = assist.Cost11(resultSeries_LocalSpeedAcc_1, resultSeries_LocalSpeedAcc_2);
                 int num_SpeedAcc = assist.pointNum11(resultSeries_LocalSpeedAcc_1, resultSeries_LocalSpeedAcc_2);
-                totalRMS[i][4] += rms_SpeedAcc;
-                totalCOST[i][4] += cost_SpeedAcc;
-                totalNUM[i][4] += num_SpeedAcc;
-                totalTIME[i][4] = totalTIME[i][4] + time_SpeedAcc4-time_SpeedAcc3+time_SpeedAcc2-time_SpeedAcc1;
+                totalRMS[i][3] += rms_SpeedAcc;
+                totalCOST[i][3] += cost_SpeedAcc;
+                totalNUM[i][3] += num_SpeedAcc;
+                totalTIME[i][3] = totalTIME[i][3] + time_SpeedAcc4-time_SpeedAcc3+time_SpeedAcc2-time_SpeedAcc1;
 
                 // Lsgreedy_1
                 cleanSeries = assist.readData2_size(inputFileName, ",", size);
@@ -260,10 +214,10 @@ public class ILD_dataSize_together {
                 double rms_lsgreedy = assist.RMS1(resultSeries_lsgreedy_1, resultSeries_lsgreedy_2);
                 double cost_lsgreedy = assist.Cost11(resultSeries_lsgreedy_1, resultSeries_lsgreedy_2);
                 int num_lsgreedy = assist.pointNum11(resultSeries_lsgreedy_1, resultSeries_lsgreedy_2);
-                totalRMS[i][5] += rms_lsgreedy;
-                totalCOST[i][5] += cost_lsgreedy;
-                totalNUM[i][5] += num_lsgreedy;
-                totalTIME[i][5] = totalTIME[i][5] + time666-time555+time444-time333;
+                totalRMS[i][4] += rms_lsgreedy;
+                totalCOST[i][4] += cost_lsgreedy;
+                totalNUM[i][4] += num_lsgreedy;
+                totalTIME[i][4] = totalTIME[i][4] + time666-time555+time444-time333;
 
                 //expsmooth
                 cleanSeries = assist.readData2_size(inputFileName, ",", size);
@@ -287,12 +241,12 @@ public class ILD_dataSize_together {
                 double rms_expsmooth = assist.RMS1(resultSeries_5, resultSeries_6);
                 double cost_expsmooth = assist.Cost11(resultSeries_5, resultSeries_6);
                 int num_expsmooth = assist.pointNum11(resultSeries_5, resultSeries_6);
-                totalRMS[i][6] += rms_expsmooth;
-                totalCOST[i][6] += cost_expsmooth;
-                totalNUM[i][6] += num_expsmooth;
-                totalTIME[i][6] = totalTIME[i][6] + time20-time19+time18-time17;
+                totalRMS[i][5] += rms_expsmooth;
+                totalCOST[i][5] += cost_expsmooth;
+                totalNUM[i][5] += num_expsmooth;
+                totalTIME[i][5] = totalTIME[i][5] + time20-time19+time18-time17;
 
-                // HTD-Cleaning
+                // HTD
                 cleanSeries = assist.readData2_size(inputFileName, ",", size);
                 dirtySeries = assist.addNoise2_maxmin_together(cleanSeries, drate, seed);
                 if(isNormalize){
@@ -314,86 +268,10 @@ public class ILD_dataSize_together {
                 double rms_HTD = assist.RMS1(resultSeries_HTD_1, resultSeries_HTD_2);
                 double cost_HTD = assist.Cost11(resultSeries_HTD_1, resultSeries_HTD_2);
                 int num_HTD = assist.pointNum11(resultSeries_HTD_1, resultSeries_HTD_2);
-                totalRMS[i][7] += rms_HTD;
-                totalCOST[i][7] += cost_HTD;
-                totalNUM[i][7] += num_HTD;
-                totalTIME[i][7] = totalTIME[i][7] + time_HTD2-time_HTD1+time_HTD4-time_HTD3;
-
-                // System.out.println("error rate is :" + drate);
-                // global
-                // System.out.println("    global:");
-                // System.out.println("        Dirty RMS error is " + rmsDirty_12);
-                // System.out.println("        Repair RMS error is " + rms_34);
-                // System.out.println("        Cost is " + cost_34);
-                // System.out.println("        Accuracy is " + accuracy_2);
-                // System.out.println("        Time is " + (time8-time7+time10-time9));
-
-                // two-dimensional
-                // System.out.println("    two-dimensional:");
-                // System.out.println("        Dirty RMS error is " + rmsDirty_two);
-                // System.out.println("        Repair RMS error is " + rms_two);
-                // System.out.println("        Cost is " + cost_two);
-                // System.out.println("        Time is " + (time2-time1));
-                // System.out.println("        The number of modified points is " + num_two);
-
-                // if(i==4){
-                //     double a =0;
-                // }
-                // // two-plus
-                // System.out.println("    two-plus:");
-                // System.out.println("        Dirty RMS error is " + rmsDirty_twoPlus);
-                // System.out.println("        Repair RMS error is " + rms_twoPlus);
-                // System.out.println("        Cost is " + cost_twoPlus);
-                // System.out.println("        Time is " + (time200-time100));
-                // System.out.println("        The number of modified points is " + num_twoPlus);
-
-                // // My1:
-                // System.out.println("    My1:");
-                // System.out.println("        Dirty RMS error is " + rmsDirty_My1);
-                // System.out.println("        Repair RMS error is " + rms_My1);
-                // System.out.println("        Cost is " + cost_My1);
-                // System.out.println("        Time is " + (time_my22-time_my11+time_my2-time_my1));
-                // System.out.println("        The number of modified points is " + num_My1);
-
-                // // RCSWS
-                // System.out.println("    RCSWS:");
-                // System.out.println("        Dirty RMS error is " + rmsDirty_rcsws);
-                // System.out.println("        Repair RMS error is " + rms_rcsws);
-                // System.out.println("        Cost is " + cost_rcsws);
-                // System.out.println("        Accuracy is " + accuracy_rcsws);
-                // System.out.println("        The number of modified points is " + num_rcsws);
-
-                // // SCREEN
-                // System.out.println("    SCREEN:");
-                // System.out.println("        Dirty RMS error is " + rmsDirty_12);
-                // System.out.println("        Repair RMS error is " + rms_12);
-                // System.out.println("        Cost is " + cost_12);
-                // System.out.println("        Time is " + (time4-time3+time6-time5));
-                // System.out.println("        The number of modified points is " + num_1);
-
-                // // SpeedAcc
-                // System.out.println("    SpeedAcc:");
-                // System.out.println("        Dirty RMS error is " + rmsDirty_SpeedAcc);
-                // System.out.println("        Repair RMS error is " + rms_SpeedAcc);
-                // System.out.println("        Cost is " + cost_SpeedAcc);
-                // System.out.println("        Time is " + (time_SpeedAcc4-time_SpeedAcc3+time_SpeedAcc2-time_SpeedAcc1));
-                // System.out.println("        The number of modified points is " + num_SpeedAcc);
-
-                // // Lsgreedy
-                // System.out.println("    Lsgreedy:");
-                // System.out.println("        Dirty RMS error is " + rmsDirty_lsgreedy);
-                // System.out.println("        Repair RMS error is " + rms_lsgreedy);
-                // System.out.println("        Cost is " + cost_lsgreedy);
-                // System.out.println("        Time is " + (time444-time333+time666-time555));
-                // System.out.println("        The number of modified points is " + num_lsgreedy);
-
-                // //expsmooth
-                // System.out.println("    ExpSmooth:");
-                // System.out.println("        Dirty RMS error is " + rmsDirty_expsmooth);
-                // System.out.println("        Repair RMS error is " + rms_expsmooth);
-                // System.out.println("        Cost is " + cost_expsmooth);
-                // System.out.println("        Time is " + (time18-time17+time20-time19));
-                // System.out.println("        The number of modified points is " + num_expsmooth);
+                totalRMS[i][6] += rms_HTD;
+                totalCOST[i][6] += cost_HTD;
+                totalNUM[i][6] += num_HTD;
+                totalTIME[i][6] = totalTIME[i][6] + time_HTD2-time_HTD1+time_HTD4-time_HTD3;
             }
             totalDirtyRMS /= expTime;
             System.out.println("Dirty RMS error is " + totalDirtyRMS);
@@ -404,7 +282,7 @@ public class ILD_dataSize_together {
                 totalTIME[i][j] /= expTime;
             }
         }
-        String[] name = new String[]{" ", "My2","MTCSC","MTCSC-Uni","SCREEN","SpeedAcc","LsGreedy","EWMA","HTD","RCSWS"};
+        String[] name = new String[]{" ","MTCSC","MTCSC-Uni","SCREEN","SpeedAcc","LsGreedy","EWMA","HTD","RCSWS"};
         if(isNormalize){
             String writefilename = "result/Two/TemHum/dataSize/together/RMS_nor.csv";
             assist.writeCSV(writefilename, name, totalSize ,totalRMS);
