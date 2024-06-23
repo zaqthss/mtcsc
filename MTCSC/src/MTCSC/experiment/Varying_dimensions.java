@@ -7,7 +7,7 @@ import MTCSC.entity.TimeSeries;
 import MTCSC.entity.TimeSeriesN;
 import MTCSC.util.Assist;
 
-public class Varing_dimensions {
+public class Varying_dimensions {
     public static void main(String[] args) {
         Assist assist = new Assist();
         String inputFileName = "ECG/ECG_5k.csv";
@@ -102,15 +102,15 @@ public class Varing_dimensions {
             totalRMS[i][3] = totalDirtyRMS[i];
         }
 
-        String writefilename = "result/VaringDimension/RMS.csv";
+        String writefilename = "result/VaryingDimension/RMS.csv";
         String[] name1 = new String[]{" ", "MTCSC-C", "MTCSC-G", "MTCSC-L", "Dirty"};
         assist.writeCSV(writefilename, name1, totalDimension ,totalRMS);
         String[] name = new String[]{" ", "MTCSC-C", "MTCSC-G", "MTCSC-L"};
-        writefilename = "result/VaringDimension/COST.csv";
+        writefilename = "result/VaryingDimension/COST.csv";
         assist.writeCSV(writefilename, name, totalDimension ,totalCOST);
-        writefilename = "result/VaringDimension/NUM.csv";
+        writefilename = "result/VaryingDimension/NUM.csv";
         assist.writeCSV(writefilename, name, totalDimension ,totalNUM);
-        writefilename = "result/VaringDimension/TIME.csv";
+        writefilename = "result/VaryingDimension/TIME.csv";
         assist.writeCSV(writefilename, name, totalDimension ,totalTIME);
     }
 }
