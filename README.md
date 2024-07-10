@@ -3,6 +3,11 @@ Source code and supplementary materials for "Multivariate Time Series Cleaning u
 
 To enable reproductivity, we open source all datasets, algorithms and codes introduced in the paper, and this document produces a guideline of reproduction. 
 
+We use publicly available code sources for the machine learning baseline and deep leaning baselines: 
+* Holoclean: https://github.com/HoloClean/holoclean
+* CAE-M: https://github.com/imperial-qore/TranAD
+* TranAD: https://github.com/imperial-qore/TranAD
+
 ## **Note !!!**
 * **Use the IDE to open the MTCSC folder instead of the mtcsc-E4CC folder, which does not contain README.md.**
 * **The folder named MTCSC_python is about 5.3.3 statistical testing and 5.5 application experiments. If you need to reproduce the results, please open it separately using the Python IDE. Details can be found in the "Experiments"**
