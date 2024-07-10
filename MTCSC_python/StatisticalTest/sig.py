@@ -391,7 +391,7 @@ def draw_cd_diagram(p_values, average_ranks, alpha=0.1, title=None, filename=Non
     if title:
         plt.title(title, y=-0.2, x=0.5)
     # plt.savefig('./result/cd-diagram-' + filename + '.png', bbox_inches='tight')
-    plt.savefig('./fig/cd-diagram-' + filename + '.eps', bbox_inches='tight')
+    plt.savefig('./figure/cd-diagram-' + filename + '.eps', bbox_inches='tight')
 
 
 alpha = 0.05
