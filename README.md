@@ -39,7 +39,7 @@ To enable reproductivity, we open source all datasets, algorithms and codes intr
       * example2.java corresponds to Example 2.4/2.5/2.6/2.7 in this paper. 
       * example3.java corresponds to Example 3.3 in this paper. 
     * util/ : Defined the required utils.
-    * OLS.java 、BaseAnomaly.java and HTD.java : Corresponding HTD baseline.
+    * OLS.java, BaseAnomaly.java and HTD.java : Corresponding HTD baseline.
     * EWMA.java : Corresponding EWMA baseline.
     * Global_1.java : Corresponding the one-dimensional version of MTCSC-G.
     * Global_2.java : Corresponding the two-dimensional version of MTCSC-G.
@@ -90,7 +90,7 @@ If you want to reproduce the experimental results in this paper, simply run a se
   * In 5.3.1 and 5.3.2
   * Critical (statistical tests) : Open the MTCSC_python folder using a Python IDE and run /StatisticalTest/sig.py, the result is in /StatisticalTest/fig/
 * Section 5.3.4 Varying Dimension
-  * Path/TAO_dataSize_together.java, results in Result/VaringDimension/
+  * Path/Varying_dimensions.java, results in Result/VaringDimension/
 * Section 5.4.1 GPS Trajectory with Human Walking
   * gps.java, results in Result/GPS/
 * Section 5.4.3 Adaptive Speed with Different Transportation : 
@@ -99,15 +99,15 @@ If you want to reproduce the experimental results in this paper, simply run a se
   * Path/DynamicSpeed_threshold.java, results in Result/DynamicSpeed_Threshold/
 * Section 5.5 Applications : The final classification and clustering experiments were completed using Python. First, you need to run the corresponding Java files below to generate repair results for various algorithms, and then copy the results to the folder corresponding to MTCSC_python/Application/ (already created)
   * java
-    * Path/app/ArrowHead.java, repair results in Data/UCR
-    * Path/app/Car.java, repair results in Data/UCR
-    * Path/app/DiatomSizeReduction.java, repair results in Data/UCR
-    * Path/app/Meat.java, repair results in Data/UCR
-    * Path/app/AtrialFibrillation.java, repair results in Data/UEA
-    * Path/app/StandWalkJump.java, repair results in Data/UEA
+    * Path/app/ArrowHead.java, repair results in Data/UCR/ArrowHead
+    * Path/app/Car.java, repair results in Data/UCR/Car
+    * Path/app/DSR.java, repair results in Data/UCR/DSR
+    * Path/app/Meat.java, repair results in Data/UCR/Meat
+    * Path/app/AtrialFib.java, repair results in Data/UEA/AtrialFibrillation
+    * Path/app/SWJ.java, repair results in Data/UEA/StandWalkJump
   * python (Open the MTCSC_python folder using a Python IDE)
-    * MTCSC_python/multi-classification.py -> AtrialFibrillation
-    * MTCSC_python/multi-cluster.py -> StandWalkJump
+    * MTCSC_python/multi-classification.py -> AtrialFib
+    * MTCSC_python/multi-cluster.py -> SWJ
     * MTCSC_python/uni-classification.py -> ArrowHead and Car (Removed in revision version)
     * MTCSC_python/uni-cluster.py -> DSR and Meat (Removed in revision version)
   

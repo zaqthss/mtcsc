@@ -11,18 +11,18 @@ import MTCSC.entity.TimeSeriesN;
 import MTCSC.entity.TimeSeries;
 import MTCSC.util.Assist;
 
-public class StandWalkJump {
+public class AtrialFib {
     public static void main(String[] args) {
         Assist assist = new Assist();
-        String path = "data/UEA/StandWalkJump/";
-        String filePath = "data/UEA/StandWalkJump/train_dim";
-        String labelPath = "data/UEA/StandWalkJump/train_label.csv";
-        int n = 4;
+        String path = "data/UEA/AtrialFibrillation/";
+        String filePath = "data/UEA/AtrialFibrillation/train_dim";
+        String labelPath = "data/UEA/AtrialFibrillation/train_label.csv";
+        int n = 2;
         ArrayList<TimeSeriesN> TimeSeriesList = new ArrayList<>();
         int seed = 1;
         double drate = 0.1;
         int T = 10;
-        int length = 2500;
+        int length = 640;
         ArrayList<Integer> label= assist.UEAGetLabel(labelPath);
         
         for(int i=0; i<10; i++, seed++){
@@ -31,7 +31,7 @@ public class StandWalkJump {
             double RMS = 0;
             TimeSeriesList = assist.read_UEA(filePath, n);
             for(int j=0; j<TimeSeriesList.size(); j++){
-                addNoise(assist, label, j, TimeSeriesList, drate, seed+j, n);
+                addNoise(assist, label, j, TimeSeriesList, drate, seed, n);
                 double rms_MyN = assist.RMSN(TimeSeriesList.get(j), n);
                 RMS += rms_MyN;
             }
@@ -42,7 +42,7 @@ public class StandWalkJump {
             RMS = 0;
             TimeSeriesList = assist.read_UEA(filePath, n);
             for(int j=0; j<TimeSeriesList.size(); j++){
-                addNoise(assist, label, j, TimeSeriesList, drate, seed+j, n);
+                addNoise(assist, label, j, TimeSeriesList, drate, seed, n);
                 double S= assist.getSpeedN(TimeSeriesList.get(j), 1, n);
                 MTCSC_N myn = new MTCSC_N(TimeSeriesList.get(j), S, T, n);
                 TimeSeriesN resultSeries = myn.mainScreen();
@@ -56,7 +56,7 @@ public class StandWalkJump {
             RMS = 0;
             TimeSeriesList = assist.read_UEA(filePath, n);
             for(int j=0; j<TimeSeriesList.size(); j++){
-                addNoise(assist, label, j, TimeSeriesList, drate, seed+j, n);
+                addNoise(assist, label, j, TimeSeriesList, drate, seed, n);
                 ArrayList<TimeSeries> dirtySeries_1 = new ArrayList<>();
                 for(int h=0; h<n; h++){
                     dirtySeries_1.add(assist.getN(TimeSeriesList.get(j), h));
@@ -80,7 +80,7 @@ public class StandWalkJump {
             RMS = 0;
             TimeSeriesList = assist.read_UEA(filePath, n);
             for(int j=0; j<TimeSeriesList.size(); j++){
-                addNoise(assist, label, j, TimeSeriesList, drate, seed+j, n);
+                addNoise(assist, label, j, TimeSeriesList, drate, seed, n);
                 ArrayList<TimeSeries> dirtySeries_1 = new ArrayList<>();
                 for(int h=0; h<n; h++){
                     dirtySeries_1.add(assist.getN(TimeSeriesList.get(j), h));
@@ -104,7 +104,7 @@ public class StandWalkJump {
             RMS = 0;
             TimeSeriesList = assist.read_UEA(filePath, n);
             for(int j=0; j<TimeSeriesList.size(); j++){
-                addNoise(assist, label, j, TimeSeriesList, drate, seed+j, n);
+                addNoise(assist, label, j, TimeSeriesList, drate, seed, n);
                 ArrayList<TimeSeries> dirtySeries_1 = new ArrayList<>();
                 for(int h=0; h<n; h++){
                     dirtySeries_1.add(assist.getN(TimeSeriesList.get(j), h));
@@ -128,7 +128,7 @@ public class StandWalkJump {
             RMS = 0;
             TimeSeriesList = assist.read_UEA(filePath, n);
             for(int j=0; j<TimeSeriesList.size(); j++){
-                addNoise(assist, label, j, TimeSeriesList, drate, seed+j, n);
+                addNoise(assist, label, j, TimeSeriesList, drate, seed, n);
                 ArrayList<TimeSeries> dirtySeries_1 = new ArrayList<>();
                 for(int h=0; h<n; h++){
                     dirtySeries_1.add(assist.getN(TimeSeriesList.get(j), h));
@@ -150,11 +150,11 @@ public class StandWalkJump {
             RMS = 0;
             TimeSeriesList = assist.read_UEA(filePath, n);
             for(int j=0; j<TimeSeriesList.size(); j++){
-                addNoise(assist, label, j, TimeSeriesList, drate, seed+j, n);
+                addNoise(assist, label, j, TimeSeriesList, drate, seed, n);
                 ArrayList<TimeSeries> dirtySeries_1 = new ArrayList<>();
                 for(int h=0; h<n; h++){
                     dirtySeries_1.add(assist.getN(TimeSeriesList.get(j), h));
-                    EWMA exp = new EWMA(dirtySeries_1.get(h), 1.0);
+                    EWMA exp = new EWMA(dirtySeries_1.get(h), 0.042);
                     exp.mainExp();
                 }
                 double rms_EWMA = assist.RMSN(dirtySeries_1, n);
@@ -172,7 +172,7 @@ public class StandWalkJump {
             RMS = 0;
             TimeSeriesList = assist.read_UEA(filePath, n);
             for(int j=0; j<TimeSeriesList.size(); j++){
-                addNoise(assist, label, j, TimeSeriesList, drate, seed+j, n);
+                addNoise(assist, label, j, TimeSeriesList, drate, seed, n);
                 ArrayList<TimeSeries> dirtySeries_1 = new ArrayList<>();
                 for(int h=0; h<n; h++){
                     dirtySeries_1.add(assist.getN(TimeSeriesList.get(j), h));
@@ -190,20 +190,20 @@ public class StandWalkJump {
                     assist.saveUEAuni(path, seed, drate, dirtySeries_1, n, "HTD", length, false);
                 }
             }
-            System.out.println("    HTD : "+ RMS); 
+            System.out.println("    HTD : "+ RMS);
+                
         }
     }
 
     public static void addNoise(Assist assist, ArrayList<Integer> label, int index, ArrayList<TimeSeriesN> TimeSeriesList, double drate, int seed, int n) {
-        Double[] noiseMinMax1 = {-1.26, 5.76, -1.47, 5.12, -0.75, 3.2, -0.89, 4.54};
-        Double[] noiseMinMax2 = {-1.24, 5.41, -0.93, 4.67, -1.23, 5.6, -1.18, 4.57};
-        Double[] noiseMinMax3 = {-1.76, 4.91, -3.61, 5.59, -1.73, 2.95, -0.9, 1.91};
-        
+        Double[] noiseMinMax1 = {-0.6732, 2.4849, -0.80145, 0.63168};
+        Double[] noiseMinMax2 = {-0.82992, 2.2338, -0.6072, 0.19459};
+        Double[] noiseMinMax3 = {-0.88426, 2.0205, -2.22195, 0.53352};
         if(label.get(index) == 1)
             assist.addNoiseN_maxmin_together_UEA(TimeSeriesList.get(index), drate, seed, n, noiseMinMax1);
         else if(label.get(index) == 2)
             assist.addNoiseN_maxmin_together_UEA(TimeSeriesList.get(index), drate, seed, n, noiseMinMax2);
-        else if(label.get(index) == 3)
+        else 
             assist.addNoiseN_maxmin_together_UEA(TimeSeriesList.get(index), drate, seed, n, noiseMinMax3);
     }
 }

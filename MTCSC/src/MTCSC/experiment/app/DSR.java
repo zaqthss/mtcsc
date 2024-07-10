@@ -10,11 +10,11 @@ import MTCSC.SCREEN;
 import MTCSC.entity.TimeSeries;
 import MTCSC.util.Assist;
 
-public class DiatomSizeReduction {
+public class DSR {
     public static void main(String[] args) {
         Assist assist = new Assist();
-        String filePath = "data/UCR/DiatomSizeReduction/DiatomSizeReduction_TRAIN.tsv";
-        String dataName = "DiatomSizeReduction";
+        String filePath = "data/UCR/DSR/DiatomSizeReduction_TRAIN.tsv";
+        String dataName = "DSR";
         
         ArrayList<Integer> labels = assist.appGetLabel(filePath);
 

@@ -61,10 +61,10 @@ public class DynamicSpeed {
         double rms_twoPlus = assist.RMS2(resultSeries_twoPlus);
         double cost_twoPlus = assist.Cost22(resultSeries_twoPlus);
         int num_twoPlus = assist.pointNum22(resultSeries_twoPlus);
-        totalRMS[1] += rms_twoPlus;
-        totalCOST[1] += cost_twoPlus;
-        totalNUM[1] += num_twoPlus;
-        totalTIME[1] = totalTIME[1] + time200-time100;
+        totalRMS[0] += rms_twoPlus;
+        totalCOST[0] += cost_twoPlus;
+        totalNUM[0] += num_twoPlus;
+        totalTIME[0] = totalTIME[0] + time200-time100;
 
         // MTCSC-A
         dirtySeries = assist.readData2(inputFileName, ",");
@@ -77,10 +77,10 @@ public class DynamicSpeed {
         double rms_twoPlusDS = assist.RMS2(resultSeries_twoPlusDS);
         double cost_twoPlusDS = assist.Cost22(resultSeries_twoPlusDS);
         int num_twoPlusDS = assist.pointNum22(resultSeries_twoPlusDS);
-        totalRMS[2] += rms_twoPlusDS;
-        totalCOST[2] += cost_twoPlusDS;
-        totalNUM[2] += num_twoPlusDS;
-        totalTIME[2] = totalTIME[2] + time_twoPlusDS2-time_twoPlusDS1;
+        totalRMS[1] += rms_twoPlusDS;
+        totalCOST[1] += cost_twoPlusDS;
+        totalNUM[1] += num_twoPlusDS;
+        totalTIME[1] = totalTIME[1] + time_twoPlusDS2-time_twoPlusDS1;
 
         // MTCSC-Uni
         dirtySeries = assist.readData2(inputFileName, ",");
@@ -100,10 +100,10 @@ public class DynamicSpeed {
         double rms_My1 = assist.RMS1(resultSeries_my1_1, resultSeries_my1_2);
         double cost_My1 = assist.Cost11(resultSeries_my1_1, resultSeries_my1_2);
         int num_My1 = assist.pointNum11(resultSeries_my1_1, resultSeries_my1_2);
-        totalRMS[3] += rms_My1;
-        totalCOST[3] += cost_My1;
-        totalNUM[3] += num_My1;
-        totalTIME[3] = totalTIME[3] +time_my22-time_my11+time_my2-time_my1;
+        totalRMS[2] += rms_My1;
+        totalCOST[2] += cost_My1;
+        totalNUM[2] += num_My1;
+        totalTIME[2] = totalTIME[2] +time_my22-time_my11+time_my2-time_my1;
 
         // rcsws
         dirtySeries = assist.readData2(inputFileName, ",");
@@ -115,10 +115,10 @@ public class DynamicSpeed {
         double rms_rcsws = assist.RMS2(resultSeries_rcsws);
         double cost_rcsws = assist.Cost22(resultSeries_rcsws);
         int num_rcsws = assist.pointNum22(resultSeries_rcsws);
-        totalRMS[4] += rms_rcsws;
-        totalCOST[4] += cost_rcsws;
-        totalNUM[4] += num_rcsws;
-        totalTIME[4] = totalTIME[4] + time_rcsws2-time_rcsws1;
+        totalRMS[3] += rms_rcsws;
+        totalCOST[3] += cost_rcsws;
+        totalNUM[3] += num_rcsws;
+        totalTIME[3] = totalTIME[3] + time_rcsws2-time_rcsws1;
 
         // Screen
         dirtySeries = assist.readData2(inputFileName, ",");
@@ -139,10 +139,10 @@ public class DynamicSpeed {
         double rms_12 = assist.RMS1(resultSeries_1, resultSeries_2);
         double cost_12 = assist.Cost11(resultSeries_1, resultSeries_2);
         int num_1 = assist.pointNum11(resultSeries_1, resultSeries_2);
-        totalRMS[5] += rms_12;
-        totalCOST[5] += cost_12;
-        totalNUM[5] += num_1;
-        totalTIME[5] = totalTIME[5] + time6-time5+time4-time3;
+        totalRMS[4] += rms_12;
+        totalCOST[4] += cost_12;
+        totalNUM[4] += num_1;
+        totalTIME[4] = totalTIME[4] + time6-time5+time4-time3;
 
         // SpeedAcc
         dirtySeries = assist.readData2(inputFileName, ",");
@@ -163,10 +163,10 @@ public class DynamicSpeed {
         double rms_SpeedAcc = assist.RMS1(resultSeries_LocalSpeedAcc_1, resultSeries_LocalSpeedAcc_2);
         double cost_SpeedAcc = assist.Cost11(resultSeries_LocalSpeedAcc_1, resultSeries_LocalSpeedAcc_2);
         int num_SpeedAcc = assist.pointNum11(resultSeries_LocalSpeedAcc_1, resultSeries_LocalSpeedAcc_2);
-        totalRMS[6] += rms_SpeedAcc;
-        totalCOST[6] += cost_SpeedAcc;
-        totalNUM[6] += num_SpeedAcc;
-        totalTIME[6] = totalTIME[6] + time_SpeedAcc4-time_SpeedAcc3+time_SpeedAcc2-time_SpeedAcc1;
+        totalRMS[5] += rms_SpeedAcc;
+        totalCOST[5] += cost_SpeedAcc;
+        totalNUM[5] += num_SpeedAcc;
+        totalTIME[5] = totalTIME[5] + time_SpeedAcc4-time_SpeedAcc3+time_SpeedAcc2-time_SpeedAcc1;
 
         // Lsgreedy
         dirtySeries = assist.readData2(inputFileName, ",");
@@ -187,10 +187,10 @@ public class DynamicSpeed {
         double rms_lsgreedy = assist.RMS1(resultSeries_lsgreedy_1, resultSeries_lsgreedy_2);
         double cost_lsgreedy = assist.Cost11(resultSeries_lsgreedy_1, resultSeries_lsgreedy_2);
         int num_lsgreedy = assist.pointNum11(resultSeries_lsgreedy_1, resultSeries_lsgreedy_2);
-        totalRMS[7] += rms_lsgreedy;
-        totalCOST[7] += cost_lsgreedy;
-        totalNUM[7] += num_lsgreedy;
-        totalTIME[7] = totalTIME[7] + time666-time555+time444-time333;
+        totalRMS[6] += rms_lsgreedy;
+        totalCOST[6] += cost_lsgreedy;
+        totalNUM[6] += num_lsgreedy;
+        totalTIME[6] = totalTIME[6] + time666-time555+time444-time333;
 
         // expsmooth
         dirtySeries = assist.readData2(inputFileName, ",");
@@ -210,10 +210,10 @@ public class DynamicSpeed {
         double rms_expsmooth = assist.RMS1(resultSeries_5, resultSeries_6);
         double cost_expsmooth = assist.Cost11(resultSeries_5, resultSeries_6);
         int num_expsmooth = assist.pointNum11(resultSeries_5, resultSeries_6);
-        totalRMS[8] += rms_expsmooth;
-        totalCOST[8] += cost_expsmooth;
-        totalNUM[8] += num_expsmooth;
-        totalTIME[8] = totalTIME[8] + time20-time19+time18-time17;
+        totalRMS[7] += rms_expsmooth;
+        totalCOST[7] += cost_expsmooth;
+        totalNUM[7] += num_expsmooth;
+        totalTIME[7] = totalTIME[7] + time20-time19+time18-time17;
 
         // HTD-Cleaning
         dirtySeries = assist.readData2(inputFileName, ",");
@@ -234,10 +234,10 @@ public class DynamicSpeed {
         double rms_HTD = assist.RMS1(resultSeries_HTD_1, resultSeries_HTD_2);
         double cost_HTD = assist.Cost11(resultSeries_HTD_1, resultSeries_HTD_2);
         int num_HTD = assist.pointNum11(resultSeries_HTD_1, resultSeries_HTD_2);
-        totalRMS[9] += rms_HTD;
-        totalCOST[9] += cost_HTD;
-        totalNUM[9] += num_HTD;
-        totalTIME[9] = totalTIME[9] + time_HTD2-time_HTD1+time_HTD4-time_HTD3;
+        totalRMS[8] += rms_HTD;
+        totalCOST[8] += cost_HTD;
+        totalNUM[8] += num_HTD;
+        totalTIME[8] = totalTIME[8] + time_HTD2-time_HTD1+time_HTD4-time_HTD3;
 
         String[][] data = new String[5][10];
         data[0] = new String[]{" ","MTCSC","MTCSC-A","MTCSC-Uni","RCSWS","SCREEN","SpeedAcc","LsGreedy","EWMA","HTD"};
